@@ -1,5 +1,7 @@
 # DailyScroll Black Theme
 
+🔗 **Live Demo:** [https://dailyscroll-shopify-theme.vercel.app/](https://dailyscroll-shopify-theme.vercel.app/)
+
 A premium, high-performance Shopify theme designed for modern e-commerce brands. DailyScroll Black Theme features a sleek dark aesthetic, hardware-accelerated 3D WebGL interactions, and a clean, conversion-optimized architecture.
 
 ## Overview
