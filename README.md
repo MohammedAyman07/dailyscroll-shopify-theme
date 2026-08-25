@@ -6,6 +6,17 @@ A premium, high-performance Shopify theme designed for modern e-commerce brands.
 
 In the modern e-commerce landscape, standing out requires more than just a functional storefront—it requires an immersive experience. This custom Shopify theme was built to provide a hyper-realistic, interactive shopping environment without compromising on performance or load times. It seamlessly integrates vanilla JavaScript and Three.js with Shopify's Liquid templating engine to deliver a fluid, native-feeling application.
 
+## 🚀 Live Portfolio Demo (Vercel Integration)
+
+Because Shopify's native `.liquid` templating engine requires a proprietary backend, I engineered a custom Node.js build pipeline (`build.js`) specifically for portfolio demonstration. 
+
+When pushed to Vercel, this custom pipeline automatically strips server-side Liquid logic, populates the application with high-quality dummy products, and cross-compiles the Liquid architecture into a blazing-fast, static **Single-Page Application (SPA)**. 
+
+This allows recruiters and hiring managers to immediately experience the immersive 3D UI, functional Cart Drawer, and Local Storage Wishlist exactly as a customer would, without needing a Shopify Partner login.
+
+**Want to see the backend code?** 
+Explore the `layout/` and `templates/` directories in this repository to view the true, uncompiled Shopify `.liquid` architecture.
+
 ## Features
 
 - **Immersive 3D WebGL Experience**: Features an interactive, mouse-reactive 3D orb on the hero section powered by Three.js.
