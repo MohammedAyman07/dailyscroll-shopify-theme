@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Premium Curated Objects" />
+  <title>DailyScroll | Curated Objects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  
+</head>
+<body>
+
+  <!-- GLOBAL TRUST BAR -->
+  <div class="global-trust-bar">
+    <span>FREE WORLDWIDE SHIPPING</span>
+    <span class="dot">•</span>
+    <span>PREMIUM QUALITY ASSURED</span>
+    <span class="dot">•</span>
+    <span>SECURE CHECKOUT</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <a href="/index.html">
+        
+          <img src="./assets/logo.png" alt="Daily Scroll" style="height: 40px; vertical-align: middle;">
+        
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="/collection.html" class="nav-link">SHOP</a>
+      <a href="/manifesto.html" class="nav-link">MANIFESTO</a>
+      <a href="/index.html#newdrop" class="nav-link">NEW DROP</a>
+    </div>
+    <div class="nav-actions">
+      <a href="##" class="nav-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-4 3-6.5 6.5-6.5s6.5 2.5 6.5 6.5"/></svg>
+      </a>
+      <button class="nav-btn" aria-label="Wishlist" id="wishlistNavBtn" onclick="openWishlist()" style="position:relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="wishlist-count" id="wishlistCount" style="display:none;">0</span>
+      </button>
+      <button class="nav-btn search-btn" aria-label="Search" onclick="document.getElementById('searchModal').classList.add('active')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="nav-btn cart-btn" id="cartBtn" aria-label="Cart" onclick="window.location.href='#'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <main role="main">
+    <!-- MANIFESTO PAGE -->
+<style>
+  .manifesto-page { padding: 150px 5% 100px; max-width: 1000px; margin: 0 auto; text-align: center; min-height: 80vh; }
+  .manifesto-page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(60px, 12vw, 180px); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 4rem; letter-spacing: 0.05em; color: #888; }
+  .manifesto-page-content { font-size: 1.4rem; line-height: 1.8; color: var(--text-muted); text-align: left; max-width: 800px; margin: 0 auto; }
+  .manifesto-page-content p { margin-bottom: 2rem; }
+</style>
+<div class="manifesto-page">
+  <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">— /// OUR PHILOSOPHY</div>
+  <h1 class="manifesto-page-title">MANIFESTO</h1>
+  <div class="manifesto-page-content">
+    
+      <p style="color: var(--text-primary); font-size: 2rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; line-height: 1.2;">We are new. We are honest. We are growing.</p>
+      <p>DAILY/SCROLL was built on one simple belief — that you deserve a store that treats you with respect. No fake reviews. No misleading claims. No gimmicks.</p>
+      <p>We are at the very beginning of our journey, and we think that is something worth celebrating. Every product we list has been carefully chosen. Every guarantee we make is real. And every customer who shops with us today is a founding supporter of something we are genuinely proud to build.</p>
+      <p style="color: var(--text-primary); font-size: 1.6rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;">The world does not need another store.<br/>It needs a better one.</p>
+      <p>That is what we are here to build — one intentional drop at a time. We source products that earn their place in your daily life. Not trend-chasing. Not disposable. Objects that matter.</p>
+      <p style="color: var(--accent); font-style: italic;">Thank you for believing in us before the world does.</p>
+    
+  </div>
+</div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-col-title">NAVIGATE</div>
+        <a href="/collection.html" class="footer-link">SHOP</a>
+        <a href="/pages/about" class="footer-link">ABOUT</a>
+        <a href="/manifesto.html" class="footer-link">MANIFESTO</a>
+        <a href="/index.html#newdrop" class="footer-link">NEW DROP</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">CATEGORIES</div>
+        
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">SUPPORT</div>
+        <a href="/pages/contact" class="footer-link">CONTACT</a>
+        <a href="/pages/returns" class="footer-link">RETURNS</a>
+        <a href="/pages/concierge" class="footer-link">CONCIERGE</a>
+        <a href="/pages/terms-of-service" class="footer-link">TERMS OF SERVICE</a>
+        <a href="/pages/privacy-policy" class="footer-link">PRIVACY POLICY</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">SOCIAL</div>
+        <a href="https://www.instagram.com/dailyscrollstore?igsh=MXkyY3ZqdDVudTZ1Zg==" class="footer-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+        <a href="https://www.facebook.com/share/1Ki11Czavp/?mibextid=wwXIfr" class="footer-link" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+      </div>
+    </div>
+
+    <div class="footer-big-text">DAILY<span class="accent-slash">/</span>SCROLL</div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DAILYSCROLL. ALL OBJECTS CONSIDERED.</span>
+      <span>POWERED BY SHOPIFY. RENDERED WITH INTENT.</span>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal">
+    <button class="search-close" onclick="document.getElementById('searchModal').classList.remove('active')">✕</button>
+    <div class="search-modal-content">
+      <form action="#" method="get" class="search-form">
+        <input type="text" name="q" placeholder="SEARCH OBJECTS..." class="search-input" autofocus>
+        <button type="submit" class="search-submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WISHLIST DRAWER -->
+  <div class="wishlist-overlay" id="wishlistOverlay" onclick="closeWishlist()"></div>
+  <div class="wishlist-drawer" id="wishlistDrawer">
+    <div class="wishlist-drawer-header">
+      <div class="wishlist-drawer-title">— /// WISHLIST</div>
+      <button class="wishlist-close" onclick="closeWishlist()">✕</button>
+    </div>
+    <div class="wishlist-drawer-body" id="wishlistBody">
+      <div class="wishlist-empty" id="wishlistEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.3; margin-bottom:16px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <p>No saved objects yet.</p>
+        <a href="/collection.html" class="cta-btn" style="margin-top:20px; display:inline-block;">SHOP NOW</a>
+      </div>
+      <div class="wishlist-items" id="wishlistItems"></div>
+    </div>
+  </div>
+
+  <script src="./assets/app.js" defer></script>
+  <script src="./assets/orb3d.js" defer></script>
+
+  <!-- GLOBAL WISHLIST + RECENTLY VIEWED JS -->
+  <script>
+    // ---- WISHLIST ----
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem('ds_wishlist') || '[]'); } catch(e) { return []; }
+    }
+    function saveWishlist(list) {
+      localStorage.setItem('ds_wishlist', JSON.stringify(list));
+    }
+    function updateWishlistCount() {
+      var list = getWishlist();
+      var badge = document.getElementById('wishlistCount');
+      if (badge) {
+        if (list.length > 0) {
+          badge.style.display = 'flex';
+          badge.textContent = list.length;
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    }
+    function toggleWishlist(productId, productTitle, productUrl, productImg, btn) {
+      var list = getWishlist();
+      var idx = list.findIndex(function(p){ return p.id === productId; });
+      if (idx > -1) {
+        list.splice(idx, 1);
+        if (btn) btn.classList.remove('wishlisted');
+        showToast('Removed from Wishlist');
+      } else {
+        list.push({ id: productId, title: productTitle, url: productUrl, img: productImg });
+        if (btn) btn.classList.add('wishlisted');
+        showToast('❤️ Added to Wishlist');
+      }
+      saveWishlist(list);
+      updateWishlistCount();
+      renderWishlistDrawer();
+    }
+    function renderWishlistDrawer() {
+      var list = getWishlist();
+      var itemsEl = document.getElementById('wishlistItems');
+      var emptyEl = document.getElementById('wishlistEmpty');
+      if (!itemsEl) return;
+      if (list.length === 0) {
+        emptyEl.style.display = 'flex';
+        itemsEl.innerHTML = '';
+        return;
+      }
+      emptyEl.style.display = 'none';
+      itemsEl.innerHTML = list.map(function(p) {
+        return '<div class="wishlist-item">' +
+          '<a href="' + p.url + '" class="wishlist-item-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></a>' +
+          '<div class="wishlist-item-info">' +
+            '<a href="' + p.url + '" class="wishlist-item-title">' + p.title + '</a>' +
+          '</div>' +
+          '<button class="wishlist-item-remove" onclick="removeWishlistItem(\'' + p.id + '\')" aria-label="Remove">✕</button>' +
+        '</div>';
+      }).join('');
+      // sync heart buttons on page
+      document.querySelectorAll('.wishlist-heart-btn').forEach(function(btn){
+        var pid = btn.getAttribute('data-product-id');
+        btn.classList.toggle('wishlisted', list.some(function(p){ return p.id === pid; }));
+      });
+    }
+    function removeWishlistItem(productId) {
+      var list = getWishlist().filter(function(p){ return p.id !== productId; });
+      saveWishlist(list);
+      updateWishlistCount();
+      renderWishlistDrawer();
+    }
+    function openWishlist() {
+      renderWishlistDrawer();
+      document.getElementById('wishlistDrawer').classList.add('open');
+      document.getElementById('wishlistOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWishlist() {
+      document.getElementById('wishlistDrawer').classList.remove('open');
+      document.getElementById('wishlistOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 2500);
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      updateWishlistCount();
+      renderWishlistDrawer();
+    });
+
+    // ---- RECENTLY VIEWED ----
+    function getRecentlyViewed() {
+      try { return JSON.parse(localStorage.getItem('ds_recently_viewed') || '[]'); } catch(e) { return []; }
+    }
+    function addRecentlyViewed(product) {
+      var list = getRecentlyViewed().filter(function(p){ return p.id !== product.id; });
+      list.unshift(product);
+      if (list.length > 8) list = list.slice(0, 8);
+      localStorage.setItem('ds_recently_viewed', JSON.stringify(list));
+    }
+    function renderRecentlyViewed(containerId, currentId) {
+      var list = getRecentlyViewed().filter(function(p){ return p.id !== currentId; });
+      var container = document.getElementById(containerId);
+      if (!container) return;
+      if (list.length === 0) {
+        container.closest('.rv-section') && (container.closest('.rv-section').style.display = 'none');
+        return;
+      }
+      container.innerHTML = list.map(function(p) {
+        return '<a href="' + p.url + '" class="amz-rp-card">' +
+          '<div class="amz-rp-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></div>' +
+          '<div class="amz-rp-info">' +
+            '<div class="amz-rp-title">' + p.title + '</div>' +
+            '<div class="amz-rp-price">' + p.price + '</div>' +
+          '</div>' +
+        '</a>';
+      }).join('');
+    }
+  </script>
+</body>
+</html>
