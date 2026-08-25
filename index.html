@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Premium Curated Objects" />
+  <title>DailyScroll | Curated Objects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  
+</head>
+<body>
+
+  <!-- GLOBAL TRUST BAR -->
+  <div class="global-trust-bar">
+    <span>FREE WORLDWIDE SHIPPING</span>
+    <span class="dot">•</span>
+    <span>PREMIUM QUALITY ASSURED</span>
+    <span class="dot">•</span>
+    <span>SECURE CHECKOUT</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <a href="/">
+        
+          <img src="./assets/logo.png" alt="Daily Scroll" style="height: 40px; vertical-align: middle;">
+        
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="#shop" class="nav-link">SHOP</a>
+      <a href="/pages/manifesto" class="nav-link">MANIFESTO</a>
+      <a href="/#newdrop" class="nav-link">NEW DROP</a>
+    </div>
+    <div class="nav-actions">
+      <a href="##" class="nav-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-4 3-6.5 6.5-6.5s6.5 2.5 6.5 6.5"/></svg>
+      </a>
+      <button class="nav-btn" aria-label="Wishlist" id="wishlistNavBtn" onclick="openWishlist()" style="position:relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="wishlist-count" id="wishlistCount" style="display:none;">0</span>
+      </button>
+      <button class="nav-btn search-btn" aria-label="Search" onclick="document.getElementById('searchModal').classList.add('active')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="nav-btn cart-btn" id="cartBtn" aria-label="Cart" onclick="window.location.href='#'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <main role="main">
+    <!-- HERO SECTION -->
+<section class="hero" id="hero">
+  <div class="hero-label">/// EST. 2026 / DOSSIER NO.001</div>
+
+  <div class="hero-text">
+    <h1 class="hero-title">
+      <span class="line-1">THE</span>
+      <span class="line-2">DAILY</span>
+      <span class="line-3">SCROLL</span>
+    </h1>
+  </div>
+
+  <div class="orb-container" id="orbContainer">
+    <canvas id="orbCanvas"></canvas>
+  </div>
+
+  <div class="hero-dot accent-dot" id="accentDot"></div>
+
+  <div class="hero-scroll-hint">
+    <span>/ SCROLL TO EXPLORE</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="hero-bestseller-badge">
+    <span class="badge-text">/// BEST SELLER</span>
+  </div>
+
+  <div class="hero-meta">
+    <span>NO.<strong>001</strong></span>
+    <span>DEC / 2026</span>
+  </div>
+</section>
+
+
+
+<!-- TRUST SECTION -->
+<section class="trust-section" id="trust">
+  <div class="trust-label">— /// WHAT IS DAILYSCROLL</div>
+  <div class="trust-content">
+    <h2 class="trust-title">TRENDING.<br/><span class="outline-text">CURATED.</span><br/><span class="accent-text">TRUSTED.</span></h2>
+    <div class="trust-text">
+      <p>DailyScroll is your ultimate destination for the most viral and trending products on the market. We do the heavy lifting—rigorously testing, sourcing, and verifying every object before it reaches you.</p>
+      <p>No scams. No low-quality knockoffs. Just premium, trending products with uncompromising quality and reliable shipping. Trust the scroll.</p>
+    </div>
+  </div>
+  <div class="manifesto-bg-text" style="right: auto; left: -20px; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.02);">TRUST</div>
+</section>
+
+<!-- NEW STORE TRUST SECTION -->
+<section class="trust-section" style="padding: 80px 5%;">
+  <div class="trust-inner">
+    <div class="trust-label">— /// WHY SHOP WITH US</div>
+    <h2 class="trust-title">NEW STORE.<br/><span class="accent-text">REAL PROMISES.</span></h2>
+    <p class="trust-sub">We are a new store - and we are proud of it. No fake reviews. No inflated numbers. Just a passionate team that hand-picks every product and stands behind every order with total commitment to quality.</p>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <svg class="trust-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="trust-card-title">UNCOMPROMISING QUALITY</div>
+        <div class="trust-card-text">Every object is rigorously tested for premium quality.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10V20a1 1 0 01-1 1H4a1 1 0 01-1-1V10"/><rect x="1" y="6" width="22" height="5" rx="1"/><path d="M12 6V3M8 6V3M16 6V3"/></svg>
+        </div>
+        <div class="trust-card-title">FREE WORLDWIDE SHIPPING</div>
+        <p class="trust-card-text">Every order ships free, fully tracked and insured to your door — no matter where you are in the world.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div class="trust-card-title">SECURE CHECKOUT</div>
+        <p class="trust-card-text">Your payment is processed through Shopify's encrypted, bank-grade security. Your data is always safe.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="trust-card-title">HAND-PICKED QUALITY</div>
+        <p class="trust-card-text">Every product is personally reviewed by our team. If it doesn't meet our standard, it doesn't make the drop.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="trust-card-title">FAST SUPPORT</div>
+        <p class="trust-card-text">Have a question? Message us and we will respond within 24 hours. Real people, real answers.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="trust-card-title">GROWING FAST</div>
+        <p class="trust-card-text">We are just getting started. Be one of the first to shop our curated drops and grow with us from day one.</p>
+      </div>
+    </div>
+
+    <div class="trust-badge-row">
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Powered by Shopify
+      </div>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Secure Payments
+      </div>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        Ships Worldwide
+      </div>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Easy Returns
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MARQUEE SECTION -->
+<section class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-inner" id="marqueeInner">
+      <span class="marquee-item outlined">/// OBJECTS</span>
+      <span class="marquee-item filled">/// TRENDING</span>
+      <span class="marquee-item outlined">/// CURATED</span>
+      <span class="marquee-item filled">/// PREMIUM</span>
+      <span class="marquee-item outlined">/// OBJECTS</span>
+      <span class="marquee-item filled">/// TRENDING</span>
+      <span class="marquee-item outlined">/// CURATED</span>
+      <span class="marquee-item filled">/// PREMIUM</span>
+      <span class="marquee-item outlined">/// OBJECTS</span>
+      <span class="marquee-item filled">/// TRENDING</span>
+      <span class="marquee-item outlined">/// CURATED</span>
+      <span class="marquee-item filled">/// PREMIUM</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEW DROP SECTION -->
+<section class="new-drop-section" id="newdrop">
+  <div class="section-label">— /// NEW DROP / NO.001</div>
+  <h2 class="section-big-title">OBJECTS</h2>
+  
+
+  <div class="products-grid" id="shop">
+    
+      <!-- DUMMY PRODUCTS FOR PREVIEW / PORTFOLIO PURPOSES -->
+      <!-- If the Shopify store has no products, this fallback will render a beautiful UI for recruiters -->
+      <div class="product-card" data-id="dummy-1">
+        <div class="product-img-wrap">
+          <img src="./assets/product_headphones.png" alt="Premium Wireless Headphones" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Noise-Cancelling Headphones</div></div>
+            <div class="product-price">$299.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299)">ADD TO BAG</button></div>
+        </div>
+      </div>
+      
+      <div class="product-card" data-id="dummy-2">
+        <div class="product-img-wrap">
+          <img src="./assets/product_lamp.png" alt="Minimalist Desk Lamp" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Minimalist Desk Lamp</div></div>
+            <div class="product-price">$129.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-2', 'Minimalist Desk Lamp', 129)">ADD TO BAG</button></div>
+        </div>
+      </div>
+      
+      <div class="product-card" data-id="dummy-3">
+        <div class="product-img-wrap">
+          <img src="./assets/product_watch.png" alt="Chronograph Watch" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Matte Black Chronograph</div></div>
+            <div class="product-price">$195.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-3', 'Matte Black Chronograph', 195)">ADD TO BAG</button></div>
+        </div>
+      </div>
+
+      <div class="product-card featured-card" data-id="dummy-4">
+        <div class="product-img-wrap featured-img-wrap">
+          <img src="./assets/product_speaker.png" alt="Portable Speaker" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+          <div class="featured-badge">FEATURED</div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">360° Portable Speaker</div></div>
+            <div class="product-price">$149.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-4', '360° Portable Speaker', 149)">ADD TO BAG</button></div>
+        </div>
+      </div>
+    
+  </div>
+
+  <div style="text-align: center; margin-top: 60px;">
+    <a href="#shop" class="cta-btn">VIEW ALL OBJECTS →</a>
+  </div>
+</section>
+
+
+
+<!-- MANIFESTO SECTION -->
+<section class="manifesto-section" id="manifesto">
+  <div class="manifesto-label">— /// MANIFESTO</div>
+  <div class="manifesto-content">
+    <h2 class="manifesto-title">WE COLLECT<br/><span class="outline-text">THE SIGNAL.</span></h2>
+    <div class="manifesto-text">
+      <p>Not noise. Not trend-chasing. Not disposable.<br/>We source objects that earn their place in your life.<br/>Every drop is intentional. Every object considered.</p>
+      <a href="#shop" class="cta-btn">EXPLORE THE DROP →</a>
+    </div>
+  </div>
+  <div class="manifesto-bg-text">NO.001</div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="faq-label">— /// KNOWLEDGE BASE</div>
+      <h2 class="faq-title">FREQUENTLY ASKED<br/><span class="outline-text">QUESTIONS.</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">What is your shipping policy? <span class="toggle">+</span></div>
+        <div class="faq-answer">We offer FREE worldwide shipping on all orders. Delivery typically takes 5-10 business days depending on your location. All orders are fully tracked and insured.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">What is your return policy? <span class="toggle">+</span></div>
+        <div class="faq-answer">We stand behind the quality of our objects. We offer a strict 4-day return policy from the date of delivery. If you receive a defective or damaged item, please contact us within 4 days to arrange a replacement or refund.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">Are these products authentic? <span class="toggle">+</span></div>
+        <div class="faq-answer">Absolutely. We are an authorized retailer for all brands we carry. Every product is rigorously verified by our curation team before it makes it to our storefront.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">How can I track my order? <span class="toggle">+</span></div>
+        <div class="faq-answer">Once your order ships, you will receive an email with a tracking number. You can also track your order directly on our website using our Order Lookup page.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND MARQUEE - reversed -->
+<section class="marquee-section marquee-reverse">
+  <div class="marquee-track">
+    <div class="marquee-inner-reverse" id="marqueeInner2">
+      <span class="marquee-item filled">GADGETS ///</span>
+      <span class="marquee-item outlined">LIFESTYLE ///</span>
+      <span class="marquee-item filled">ACCESSORIES ///</span>
+      <span class="marquee-item outlined">CURATED ///</span>
+      <span class="marquee-item filled">GADGETS ///</span>
+      <span class="marquee-item outlined">LIFESTYLE ///</span>
+      <span class="marquee-item filled">ACCESSORIES ///</span>
+      <span class="marquee-item outlined">CURATED ///</span>
+      <span class="marquee-item filled">GADGETS ///</span>
+      <span class="marquee-item outlined">LIFESTYLE ///</span>
+      <span class="marquee-item filled">ACCESSORIES ///</span>
+      <span class="marquee-item outlined">CURATED ///</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="newsletter-label">— /// STAY IN THE LOOP</div>
+    <h2 class="newsletter-title">FIRST TO<br/><span class="accent-text">KNOW.</span></h2>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" id="emailInput" placeholder="YOUR@EMAIL.COM" class="newsletter-input" required />
+      <button type="submit" class="newsletter-btn">JOIN THE DROP</button>
+    </form>
+    <p class="newsletter-sub">No spam. No noise. Just objects worth knowing about.</p>
+  </div>
+</section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-col-title">NAVIGATE</div>
+        <a href="#shop" class="footer-link">SHOP</a>
+        <a href="/pages/about" class="footer-link">ABOUT</a>
+        <a href="/pages/manifesto" class="footer-link">MANIFESTO</a>
+        <a href="/#newdrop" class="footer-link">NEW DROP</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">CATEGORIES</div>
+        
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">SUPPORT</div>
+        <a href="/pages/contact" class="footer-link">CONTACT</a>
+        <a href="/pages/returns" class="footer-link">RETURNS</a>
+        <a href="/pages/concierge" class="footer-link">CONCIERGE</a>
+        <a href="/pages/terms-of-service" class="footer-link">TERMS OF SERVICE</a>
+        <a href="/pages/privacy-policy" class="footer-link">PRIVACY POLICY</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">SOCIAL</div>
+        <a href="https://www.instagram.com/dailyscrollstore?igsh=MXkyY3ZqdDVudTZ1Zg==" class="footer-link" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+        <a href="https://www.facebook.com/share/1Ki11Czavp/?mibextid=wwXIfr" class="footer-link" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+      </div>
+    </div>
+
+    <div class="footer-big-text">DAILY<span class="accent-slash">/</span>SCROLL</div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DAILYSCROLL. ALL OBJECTS CONSIDERED.</span>
+      <span>POWERED BY SHOPIFY. RENDERED WITH INTENT.</span>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal">
+    <button class="search-close" onclick="document.getElementById('searchModal').classList.remove('active')">✕</button>
+    <div class="search-modal-content">
+      <form action="#" method="get" class="search-form">
+        <input type="text" name="q" placeholder="SEARCH OBJECTS..." class="search-input" autofocus>
+        <button type="submit" class="search-submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WISHLIST DRAWER -->
+  <div class="wishlist-overlay" id="wishlistOverlay" onclick="closeWishlist()"></div>
+  <div class="wishlist-drawer" id="wishlistDrawer">
+    <div class="wishlist-drawer-header">
+      <div class="wishlist-drawer-title">— /// WISHLIST</div>
+      <button class="wishlist-close" onclick="closeWishlist()">✕</button>
+    </div>
+    <div class="wishlist-drawer-body" id="wishlistBody">
+      <div class="wishlist-empty" id="wishlistEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.3; margin-bottom:16px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <p>No saved objects yet.</p>
+        <a href="#shop" class="cta-btn" style="margin-top:20px; display:inline-block;">SHOP NOW</a>
+      </div>
+      <div class="wishlist-items" id="wishlistItems"></div>
+    </div>
+  </div>
+
+  <script src="./assets/app.js" defer></script>
+  <script src="./assets/orb3d.js" defer></script>
+
+  <!-- GLOBAL WISHLIST + RECENTLY VIEWED JS -->
+  <script>
+    // ---- WISHLIST ----
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem('ds_wishlist') || '[]'); } catch(e) { return []; }
+    }
+    function saveWishlist(list) {
+      localStorage.setItem('ds_wishlist', JSON.stringify(list));
+    }
+    function updateWishlistCount() {
+      var list = getWishlist();
+      var badge = document.getElementById('wishlistCount');
+      if (badge) {
+        if (list.length > 0) {
+          badge.style.display = 'flex';
+          badge.textContent = list.length;
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    }
+    function toggleWishlist(productId, productTitle, productUrl, productImg, btn) {
+      var list = getWishlist();
+      var idx = list.findIndex(function(p){ return p.id === productId; });
+      if (idx > -1) {
+        list.splice(idx, 1);
+        if (btn) btn.classList.remove('wishlisted');
+        showToast('Removed from Wishlist');
+      } else {
+        list.push({ id: productId, title: productTitle, url: productUrl, img: productImg });
+        if (btn) btn.classList.add('wishlisted');
+        showToast('❤️ Added to Wishlist');
+      }
+      saveWishlist(list);
+      updateWishlistCount();
+      renderWishlistDrawer();
+    }
+    function renderWishlistDrawer() {
+      var list = getWishlist();
+      var itemsEl = document.getElementById('wishlistItems');
+      var emptyEl = document.getElementById('wishlistEmpty');
+      if (!itemsEl) return;
+      if (list.length === 0) {
+        emptyEl.style.display = 'flex';
+        itemsEl.innerHTML = '';
+        return;
+      }
+      emptyEl.style.display = 'none';
+      itemsEl.innerHTML = list.map(function(p) {
+        return '<div class="wishlist-item">' +
+          '<a href="' + p.url + '" class="wishlist-item-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></a>' +
+          '<div class="wishlist-item-info">' +
+            '<a href="' + p.url + '" class="wishlist-item-title">' + p.title + '</a>' +
+          '</div>' +
+          '<button class="wishlist-item-remove" onclick="removeWishlistItem(\'' + p.id + '\')" aria-label="Remove">✕</button>' +
+        '</div>';
+      }).join('');
+      // sync heart buttons on page
+      document.querySelectorAll('.wishlist-heart-btn').forEach(function(btn){
+        var pid = btn.getAttribute('data-product-id');
+        btn.classList.toggle('wishlisted', list.some(function(p){ return p.id === pid; }));
+      });
+    }
+    function removeWishlistItem(productId) {
+      var list = getWishlist().filter(function(p){ return p.id !== productId; });
+      saveWishlist(list);
+      updateWishlistCount();
+      renderWishlistDrawer();
+    }
+    function openWishlist() {
+      renderWishlistDrawer();
+      document.getElementById('wishlistDrawer').classList.add('open');
+      document.getElementById('wishlistOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWishlist() {
+      document.getElementById('wishlistDrawer').classList.remove('open');
+      document.getElementById('wishlistOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 2500);
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      updateWishlistCount();
+      renderWishlistDrawer();
+    });
+
+    // ---- RECENTLY VIEWED ----
+    function getRecentlyViewed() {
+      try { return JSON.parse(localStorage.getItem('ds_recently_viewed') || '[]'); } catch(e) { return []; }
+    }
+    function addRecentlyViewed(product) {
+      var list = getRecentlyViewed().filter(function(p){ return p.id !== product.id; });
+      list.unshift(product);
+      if (list.length > 8) list = list.slice(0, 8);
+      localStorage.setItem('ds_recently_viewed', JSON.stringify(list));
+    }
+    function renderRecentlyViewed(containerId, currentId) {
+      var list = getRecentlyViewed().filter(function(p){ return p.id !== currentId; });
+      var container = document.getElementById(containerId);
+      if (!container) return;
+      if (list.length === 0) {
+        container.closest('.rv-section') && (container.closest('.rv-section').style.display = 'none');
+        return;
+      }
+      container.innerHTML = list.map(function(p) {
+        return '<a href="' + p.url + '" class="amz-rp-card">' +
+          '<div class="amz-rp-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></div>' +
+          '<div class="amz-rp-info">' +
+            '<div class="amz-rp-title">' + p.title + '</div>' +
+            '<div class="amz-rp-price">' + p.price + '</div>' +
+          '</div>' +
+        '</a>';
+      }).join('');
+    }
+  </script>
+</body>
+</html>
