@@ -1,172 +1,122 @@
 # DailyScroll Black Theme
 
-> A premium Shopify e-commerce theme combining Shopify Liquid, vanilla JavaScript, CSS, and Three.js/WebGL to create an immersive dark storefront experience.
-
 **Live Demo:** https://dailyscroll-shopify-theme.vercel.app/
 
-## About the Project
+## About
 
-DailyScroll Black Theme is a custom e-commerce storefront designed around a minimal black aesthetic, interactive motion, and a high-end 3D hero experience.
+This is a Shopify theme I built for a modern dark-style e-commerce website.
 
-The project has two related parts:
+I wanted the website to feel different from a normal online store, so I added a 3D hero section, animations, product interactions, cart drawer and wishlist features.
 
-1. **Shopify theme source** — the primary implementation, written with Shopify Liquid and organized using Shopify's theme architecture.
-2. **Static portfolio demo** — generated HTML used to deploy an interactive demonstration to Vercel without requiring a Shopify store or Shopify Partner access.
+The main project is the Shopify theme. I also made a static version of the site so I could host a working demo on Vercel and share it easily on GitHub.
 
-The Shopify Liquid files are the source implementation. The root-level `.html` files are generated/demo artifacts and are included so recruiters and other visitors can immediately experience the interface.
+## What I Built
 
-## Why I Built It
+- Dark e-commerce UI
+- 3D interactive hero using Three.js
+- Mouse movement and parallax effects
+- Product card 3D hover effect
+- Shopping cart drawer
+- Wishlist using `localStorage`
+- Scroll reveal animations
+- Responsive design
+- Shopify Liquid templates
+- Static demo build using Node.js
 
-I wanted to explore how far a modern e-commerce interface could be pushed using the browser platform and Shopify's native theme architecture without depending on a large frontend framework.
+## Technologies
 
-The project focuses on:
-
-- Interactive 3D graphics
-- Lightweight client-side interactions
-- Responsive UI design
-- E-commerce-style cart and wishlist experiences
-- Separation between Shopify source templates and the static portfolio demonstration
-
-## Features
-
-- **Interactive 3D Hero** — mouse-reactive black-chrome orb rendered with Three.js/WebGL.
-- **Shopping Cart Drawer** — lightweight client-side cart interaction for the storefront experience.
-- **Wishlist** — browser-side wishlist state using `localStorage`.
-- **Scroll Animations** — viewport-based reveal animations using `IntersectionObserver`.
-- **Parallax & Micro-interactions** — cursor tracking, hero parallax, product-card tilt, hover states, and animated UI feedback.
-- **Responsive Layout** — layouts built with CSS Grid, Flexbox, fluid sizing, and responsive media queries.
-- **Shopify Theme Architecture** — Liquid layouts, templates, configuration, and theme assets structured for Shopify.
-- **Static Demo Pipeline** — a custom Node.js script converts the Shopify-oriented source into a self-contained portfolio demo for Vercel.
-
-## Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| Shopify Liquid | Theme templates and Shopify storefront architecture |
-| JavaScript (ES6+) | Client-side interactions and application logic |
-| Three.js | 3D rendering and WebGL interactions |
-| WebGL | Hardware-accelerated 3D graphics |
-| HTML5 | Markup and static portfolio output |
-| CSS3 | Responsive layouts, animations, and design system |
-| Node.js | Static demo build/transformation script |
-| Vercel | Live portfolio demonstration |
-
-## Architecture
-
-```text
-Shopify Theme Source
-│
-├── layout/
-│   └── theme.liquid          # Global theme wrapper
-│
-├── templates/                # Shopify page templates
-│   ├── index.liquid
-│   ├── product.liquid
-│   ├── collection.liquid
-│   └── ...
-│
-├── config/                   # Shopify theme configuration
-│
-└── assets/
-    ├── app.js                # UI, cart, wishlist, animation logic
-    ├── orb3d.js              # Three.js/WebGL implementation
-    └── style.css             # Global styling
-
-             │
-             │ build.js
-             ▼
-
-Static Portfolio Demo
-│
-├── index.html
-├── collection.html
-├── product.html
-└── manifesto.html
-             │
-             ▼
-          Vercel
-```
+- Shopify Liquid
+- JavaScript (ES6+)
+- Three.js / WebGL
+- HTML5
+- CSS3
+- Node.js
+- Vercel
 
 ## Project Structure
 
+The important part of the project is the Shopify theme:
+
 ```text
-.
-├── assets/
-│   ├── app.js
-│   ├── orb3d.js
-│   ├── style.css
-│   └── images/assets
-├── config/
-│   ├── settings_data.json
-│   └── settings_schema.json
-├── layout/
-│   └── theme.liquid
-├── templates/
-│   ├── index.liquid
-│   ├── product.liquid
-│   ├── collection.liquid
-│   └── ...
-├── build.js
-├── index.html              # Generated static demo
-├── collection.html         # Generated static demo
-├── product.html            # Generated static demo
-├── manifesto.html          # Generated static demo
-├── .gitignore
-├── LICENSE
-└── README.md
+assets/
+├── app.js        # Main JavaScript
+├── orb3d.js      # Three.js 3D orb
+└── style.css     # Main styles
+
+config/
+├── settings_data.json
+└── settings_schema.json
+
+layout/
+└── theme.liquid
+
+templates/
+├── index.liquid
+├── product.liquid
+├── collection.liquid
+└── ...
 ```
 
-## How the 3D Experience Works
+There are also `.html` files in the root folder. These are generated files used for the live Vercel demo. The original Shopify code is inside the `.liquid` files.
 
-The hero orb is implemented in `assets/orb3d.js` using Three.js.
+## 3D Orb
 
-The implementation includes:
+The 3D orb is made with Three.js in `assets/orb3d.js`.
 
-- `WebGLRenderer` for hardware-accelerated rendering
-- `SphereGeometry` for the main object
-- `MeshPhysicalMaterial` for the black-chrome appearance
-- Procedurally generated canvas-based environment imagery
-- Environment lighting and multiple point lights
-- Mouse-driven lighting and parallax
-- Smooth animation using `requestAnimationFrame`
-- Responsive renderer resizing
+Some of the things I used are:
 
-The 3D implementation is intentionally isolated from the main UI logic in `app.js`, making the two responsibilities easier to understand and maintain.
+- WebGL renderer
+- Sphere geometry
+- Physical material
+- Environment lighting
+- Point lights
+- Mouse movement
+- Animation with `requestAnimationFrame`
+- Responsive canvas resizing
 
-## Client-Side Interaction Architecture
+I kept the 3D code in a separate file from the normal website JavaScript so it is easier to manage.
 
-`assets/app.js` handles the main browser interactions, including:
+## JavaScript
 
-- Navigation state
-- Cart state and rendering
-- Wishlist-related UI
-- Toast notifications
-- Scroll reveal animations
-- Product-card interactions
-- Hero parallax
-- Keyboard interactions
+Most of the website interactions are inside `assets/app.js`.
 
-`IntersectionObserver` is used for scroll-reveal elements so the application does not need to continuously calculate element visibility on every scroll event.
+It handles things like:
 
-## Static Portfolio Demo
+- Cart
+- Wishlist
+- Navbar effects
+- Scroll animations
+- Product card effects
+- Toast messages
+- Parallax effects
+- Keyboard controls
 
-Shopify Liquid normally depends on Shopify's storefront/runtime environment. To make the project immediately viewable by recruiters, `build.js` provides a separate demonstration pipeline.
+For the scroll animations I used `IntersectionObserver` instead of checking every element continuously while scrolling.
 
-The build script:
+## Static Demo
 
-1. Reads selected Shopify Liquid source files.
-2. Replaces Shopify-specific values that cannot exist outside Shopify.
-3. Inserts controlled demo product data where required.
-4. Converts selected Liquid templates into static HTML pages.
-5. Writes the generated files used by the Vercel demonstration.
+Shopify Liquid needs Shopify to run the templates properly. Because I wanted recruiters to be able to open the project immediately, I created `build.js`.
 
-This means the static demo is **not a replacement for the Shopify theme source**. It is a portfolio presentation layer built from the same project.
+The script takes parts of the Shopify theme and creates static HTML files for the demo.
 
-## Shopify Installation
+The generated files are used by the Vercel website:
 
-The primary project is structured as a Shopify theme.
+```text
+build.js
+   ↓
+index.html
+collection.html
+product.html
+manifesto.html
+   ↓
+Vercel
+```
 
-Using Shopify CLI:
+The Vercel version is only a demo. It does not have a real Shopify backend or real checkout.
+
+## Run the Shopify Theme
+
+If you have a Shopify development store, you can use Shopify CLI:
 
 ```bash
 npm install -g @shopify/cli
@@ -174,86 +124,82 @@ shopify login --store your-store-name.myshopify.com
 shopify theme dev
 ```
 
-Alternatively, the theme source can be uploaded through Shopify Admin as a theme ZIP.
+You can also upload the Shopify theme files to a Shopify store as a theme ZIP.
 
-> The live Vercel demo is a static portfolio demonstration and does not provide a real Shopify checkout or production store backend.
+## Performance
 
-## Performance Considerations
+I tried to keep the website lightweight even with the 3D effects.
 
-Performance was considered during the implementation rather than treating visual effects as the only priority.
+Some things I used:
 
-Examples include:
+- `IntersectionObserver` for scroll animations
+- `requestAnimationFrame` for animations
+- Limited WebGL pixel ratio
+- Procedural environment graphics for the 3D orb
+- Native JavaScript instead of adding a large frontend framework
 
-- `IntersectionObserver` for viewport-based animations
-- `requestAnimationFrame` for smooth animation loops
-- Device pixel ratio limiting for the WebGL renderer
-- Procedural environment generation instead of relying on a large external HDR environment asset
-- Separation of the WebGL logic from general UI logic
-- Native browser APIs instead of adding a large frontend framework for simple interactions
+Performance will still depend on the device and browser, especially because WebGL is being used.
 
-Actual performance can vary significantly by browser, device, GPU, network conditions, and Shopify configuration. No universal 60 FPS or Lighthouse score is claimed without a controlled benchmark.
+## Accessibility
 
-## Accessibility Considerations
+I added some basic accessibility support, including:
 
-The interface includes several accessibility-oriented details, including:
+- Keyboard controls for important interactions
+- Escape key to close the cart
+- Responsive layouts
+- Buttons for interactive controls
 
-- Keyboard interaction for important controls
-- Escape-key handling for the cart drawer
-- Semantic buttons and navigation controls where applicable
-- Responsive layouts across screen sizes
-- Reduced reliance on JavaScript for basic page structure
-
-Further accessibility testing with automated and manual tools would be a useful future improvement.
+There is still more accessibility testing I would like to add in the future.
 
 ## Security
 
-This repository is intended to be public.
+No private API keys, passwords or production credentials are included in this repository.
 
-- No private API credentials or production secrets are intentionally included.
-- Store-specific credentials should be provided through the Shopify CLI/authentication flow rather than committed to Git.
-- Local and environment-specific files are excluded through `.gitignore` where appropriate.
+Shopify login and store credentials should be handled through Shopify's normal authentication process and should not be committed to GitHub.
 
-## Testing & Quality
+## Testing
 
-The project is primarily a frontend/theme project, so testing currently focuses on manual browser verification and source-level checks.
+This is mainly a frontend Shopify theme, so I currently test it by running the website and checking the main features in the browser.
 
-Future improvements could include:
+I have not added a full automated test suite yet.
 
-- Shopify Theme Check in GitHub Actions
-- Automated JavaScript tests for cart/wishlist logic
-- Automated accessibility checks
-- Lighthouse performance monitoring
-- Cross-browser regression testing
+Some improvements I want to add later:
 
-## AI-Assisted Development Disclosure
+- Shopify Theme Check with GitHub Actions
+- JavaScript tests for cart and wishlist
+- Accessibility testing
+- More browser testing
+- Performance testing on lower-end phones
 
-AI tools were used as development assistants during parts of this project, including code exploration, debugging, implementation suggestions, refactoring ideas, and documentation support.
+## AI Usage
 
-The final project was reviewed, integrated, tested, and adapted by the author. AI assistance was used as a productivity tool; the author is responsible for the final repository and its implementation.
+I used AI tools during development as a coding assistant.
 
-## Key Engineering Takeaways
+I used AI for things like finding bugs, getting implementation ideas, understanding some problems, refactoring suggestions and documentation.
 
-This project helped me strengthen practical skills in:
+I reviewed and changed the code during development and tested the project myself. I am responsible for the final code in this repository.
 
-- Shopify theme development
-- Vanilla JavaScript architecture
-- Browser APIs and DOM manipulation
-- WebGL and Three.js
-- Interactive UI engineering
+## What I Learned
+
+While building this project I learned more about:
+
+- Shopify Liquid
+- JavaScript and DOM manipulation
+- Three.js and WebGL
 - Responsive CSS
-- Client-side state management
-- Performance-aware animation
-- Static build pipelines
-- Git/GitHub portfolio development
+- Browser APIs
+- Client-side state using `localStorage`
+- Animations and interactions
+- Building a static demo from a Shopify project
 
 ## Future Improvements
 
-- Add automated Shopify Theme Check through GitHub Actions.
-- Add automated tests for client-side state and cart behavior.
-- Improve accessibility testing and reduced-motion support.
-- Add more robust product/variant handling when connected to a real Shopify store.
-- Measure WebGL and page performance across low-end mobile devices.
+- Add GitHub Actions with Shopify Theme Check
+- Add automated tests
+- Improve accessibility
+- Add better Shopify product and variant handling
+- Test the 3D experience on more mobile devices
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
+MIT License
