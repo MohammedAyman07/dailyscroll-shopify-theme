@@ -223,21 +223,41 @@ fs.writeFileSync('product.html', productHtml);
 // --- 6. Global Fixes for all HTML files ---
 const files = ['index.html', 'collection.html', 'manifesto.html'];
 files.forEach(file => {
+    if (!fs.existsSync(file)) return;
     let content = fs.readFileSync(file, 'utf8');
-    // Replace empty product links with the new product page
-    content = content.replace(/href=""/g, 'href="/product.html"');
-    // Wrap product images in anchor tag if they aren't already
-    content = content.replace(/<div class="product-img-wrap">\s*<img/g, '<div class="product-img-wrap"><a href="/product.html"><img');
-    content = content.replace(/<img src="\.\/assets\/product_([^"]+)" alt="([^"]+)" class="product-img" \/>/g, '<img src="./assets/product_$1" alt="$2" class="product-img" /></a>');
-    
-    // Also fix the featured product 
-    content = content.replace(/<div class="product-img-wrap featured-img-wrap">\s*<img/g, '<div class="product-img-wrap featured-img-wrap"><a href="/product.html"><img');
-    
-    // Replace the title link to point to product
-    content = content.replace(/<div><div class="product-name">/g, '<div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">');
-    content = content.replace(/<\/div><\/div>\s*<div class="product-price">/g, '</div></a></div><div class="product-price">');
-    
+
+    // 1. Wrap standard dummy product images & overlay with anchor tag
+    content = content.replace(
+      /<div class="product-img-wrap">\s*<img src="\.\/assets\/([^"]+)" alt="([^"]+)" class="product-img" \/>\s*<div class="product-overlay"><span>VIEW OBJECT<\/span><\/div>\s*<\/div>/g,
+      `<div class="product-img-wrap">
+         <a href="/product.html" style="display:block; height:100%; width:100%;">
+           <img src="./assets/$1" alt="$2" class="product-img" />
+           <div class="product-overlay"><span>VIEW OBJECT</span></div>
+         </a>
+       </div>`
+    );
+
+    // 2. Wrap featured dummy product image & overlay with anchor tag
+    content = content.replace(
+      /<div class="product-img-wrap featured-img-wrap">\s*<img src="\.\/assets\/([^"]+)" alt="([^"]+)" class="product-img" \/>\s*<div class="product-overlay"><span>VIEW OBJECT<\/span><\/div>\s*<div class="featured-badge">FEATURED<\/div>\s*<\/div>/g,
+      `<div class="product-img-wrap featured-img-wrap">
+         <a href="/product.html" style="display:block; height:100%; width:100%;">
+           <img src="./assets/$1" alt="$2" class="product-img" />
+           <div class="product-overlay"><span>VIEW OBJECT</span></div>
+           <div class="featured-badge">FEATURED</div>
+         </a>
+       </div>`
+    );
+
+    // 3. Wrap product title in anchor tag (if not already wrapped)
+    content = content.replace(
+      /<div><div class="product-name">([^<]+)<\/div><\/div>/g,
+      `<div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">$1</div></a></div>`
+    );
+
     fs.writeFileSync(file, content);
 });
+
+console.log('Full functioning static site compiled! Cart, Wishlist, Products, and Checkout simulated perfectly.');
 
 console.log('Full functioning static site compiled! Cart, Wishlist, and Checkout simulated perfectly.');
