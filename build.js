@@ -128,7 +128,73 @@ collection = collection.replace(/{{ collection.title \| upcase }}/g, 'ALL OBJECT
 collection = collection.replace(/{{ collection.title \| escape }}/g, 'ALL OBJECTS');
 collection = collection.replace(/{% if collection.description != blank %}[\s\S]*?{% endif %}/g, '');
 collection = collection.replace(/{% for col in collections %}[\s\S]*?{% endfor %}/g, '');
-collection = collection.replace(/{% if settings.show_ad_shop and settings.ad_image != blank %}[\s\S]*?{% endif %}/g, '');
+// Fix the Ad carousel in collection page
+let adCarouselReplacement = `
+    <div class="ad-carousel-section" style="padding: 20px 5%;">
+      <div class="ad-marquee-wrap">
+        <div class="ad-marquee-track">
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+        </div>
+      </div>
+      <div class="ad-carousel" id="adCarouselShop">
+        <div class="ad-carousel-track" id="adTrackShop">
+          <a href="/product.html" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="./assets/product_headphones.png" alt="Ad 1" style="height:300px; object-fit:cover;">
+          </a>
+          <a href="/product.html" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="./assets/product_watch.png" alt="Ad 2" style="height:300px; object-fit:cover;">
+          </a>
+          <a href="/product.html" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="./assets/product_speaker.png" alt="Ad 3" style="height:300px; object-fit:cover;">
+          </a>
+        </div>
+        <div class="ad-dots" id="adDotsShop"></div>
+        <button class="ad-arrow ad-arrow-prev" onclick="adShopMove(-1)" aria-label="Previous">‹</button>
+        <button class="ad-arrow ad-arrow-next" onclick="adShopMove(1)"  aria-label="Next">›</button>
+      </div>
+    </div>
+    <script>
+      (function(){
+        var track = document.getElementById('adTrackShop');
+        var dotsEl = document.getElementById('adDotsShop');
+        var slides = track ? track.querySelectorAll('.ad-slide') : [];
+        var total = slides.length, current = 0, timer;
+        if (total <= 1) { document.querySelectorAll('#adCarouselShop .ad-arrow').forEach(function(a){ a.style.display='none'; }); }
+        for (var i = 0; i < total; i++) {
+          var dot = document.createElement('button');
+          dot.className = 'ad-dot' + (i === 0 ? ' active' : '');
+          dot.onclick = (function(idx){ return function(){ goToShop(idx); resetShop(); }; })(i);
+          dotsEl.appendChild(dot);
+        }
+        function goToShop(idx) {
+          current = (idx + total) % total;
+          track.style.transform = 'translateX(-' + (current * 100) + '%)';
+          dotsEl.querySelectorAll('.ad-dot').forEach(function(d,i){ d.classList.toggle('active', i===current); });
+        }
+        function resetShop() { clearInterval(timer); timer = setInterval(function(){ goToShop(current+1); }, 3000); }
+        window.adShopMove = function(dir){ goToShop(current+dir); resetShop(); };
+        resetShop();
+      })();
+    </script>
+`;
+
+// Extract everything before the ad carousel
+let adStart = collection.indexOf("{% if settings.show_ad_shop");
+// Find the end of the script tag that belongs to the ad carousel
+let scriptEnd = collection.indexOf("</script>", adStart);
+if (adStart > -1 && scriptEnd > -1) {
+    // Find the {% endif %} that follows the script tag
+    let adEnd = collection.indexOf("{% endif %}", scriptEnd);
+    if (adEnd > -1) {
+        collection = collection.substring(0, adStart) + adCarouselReplacement + collection.substring(adEnd + 11);
+    }
+}
+
 
 let cStart = collection.indexOf("{% if collection.products.size > 0 %}");
 let cElse = collection.indexOf("{% else %}", cStart);

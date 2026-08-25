@@ -110,29 +110,35 @@
     
   </div>
 
-  " class="ad-slide">
-            <div class="ad-slide-badge">★ BEST SELLING</div>
-            <img src="" alt="Ad 1">
-          </a>
-          
+  
+    <div class="ad-carousel-section" style="padding: 20px 5%;">
+      <div class="ad-marquee-wrap">
+        <div class="ad-marquee-track">
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+        </div>
+      </div>
+      <div class="ad-carousel" id="adCarouselShop">
+        <div class="ad-carousel-track" id="adTrackShop">
           <a href="/product.html" class="ad-slide">
             <div class="ad-slide-badge">★ BEST SELLING</div>
-            <img src="" alt="Ad 2">
+            <img src="./assets/product_headphones.png" alt="Ad 1" style="height:300px; object-fit:cover;">
           </a>
-          
-          
           <a href="/product.html" class="ad-slide">
             <div class="ad-slide-badge">★ BEST SELLING</div>
-            <img src="" alt="Ad 3">
+            <img src="./assets/product_watch.png" alt="Ad 2" style="height:300px; object-fit:cover;">
           </a>
-          
+          <a href="/product.html" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="./assets/product_speaker.png" alt="Ad 3" style="height:300px; object-fit:cover;">
+          </a>
         </div>
         <div class="ad-dots" id="adDotsShop"></div>
-        <button class="ad-arrow ad-arrow-prev" onclick="adShopMove(-1)" aria-label="Previous">&#8249;</button>
-        <button class="ad-arrow ad-arrow-next" onclick="adShopMove(1)"  aria-label="Next">&#8250;</button>
+        <button class="ad-arrow ad-arrow-prev" onclick="adShopMove(-1)" aria-label="Previous">‹</button>
+        <button class="ad-arrow ad-arrow-next" onclick="adShopMove(1)"  aria-label="Next">›</button>
       </div>
     </div>
-
     <script>
       (function(){
         var track = document.getElementById('adTrackShop');
@@ -156,7 +162,7 @@
         resetShop();
       })();
     </script>
-  
+
 
   <div class="products-grid">
     
