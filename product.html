@@ -60,27 +60,30 @@
   </nav>
 
   <main role="main">
-    <!-- MANIFESTO PAGE -->
-<style>
-  .manifesto-page { padding: 150px 5% 100px; max-width: 1000px; margin: 0 auto; text-align: center; min-height: 80vh; }
-  .manifesto-page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(60px, 12vw, 180px); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 4rem; letter-spacing: 0.05em; color: #888; }
-  .manifesto-page-content { font-size: 1.4rem; line-height: 1.8; color: var(--text-muted); text-align: left; max-width: 800px; margin: 0 auto; }
-  .manifesto-page-content p { margin-bottom: 2rem; }
-</style>
-<div class="manifesto-page">
-  <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">— /// OUR PHILOSOPHY</div>
-  <h1 class="manifesto-page-title">MANIFESTO</h1>
-  <div class="manifesto-page-content">
     
-      <p style="color: var(--text-primary); font-size: 2rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; line-height: 1.2;">We are new. We are honest. We are growing.</p>
-      <p>DAILY/SCROLL was built on one simple belief — that you deserve a store that treats you with respect. No fake reviews. No misleading claims. No gimmicks.</p>
-      <p>We are at the very beginning of our journey, and we think that is something worth celebrating. Every product we list has been carefully chosen. Every guarantee we make is real. And every customer who shops with us today is a founding supporter of something we are genuinely proud to build.</p>
-      <p style="color: var(--text-primary); font-size: 1.6rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;">The world does not need another store.<br/>It needs a better one.</p>
-      <p>That is what we are here to build — one intentional drop at a time. We source products that earn their place in your daily life. Not trend-chasing. Not disposable. Objects that matter.</p>
-      <p style="color: var(--accent); font-style: italic;">Thank you for believing in us before the world does.</p>
-    
-  </div>
-</div>
+<section class="new-drop-section" style="padding-top:150px; min-height:80vh; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; padding-left:5%; padding-right:5%;">
+    <div style="background:#0a0a0a; border:1px solid #333; border-radius:12px; display:flex; align-items:center; justify-content:center; padding:2rem;">
+        <img src="./assets/product_headphones.png" style="width:100%; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.5));" id="prodMainImg">
+    </div>
+    <div style="display:flex; flex-direction:column; justify-content:center; gap:2rem;">
+        <div>
+            <div style="font-size:0.8rem; letter-spacing:0.2em; color:var(--accent); margin-bottom:1rem;">/// DAILYSCROLL EXCLUSIVE</div>
+            <h1 style="font-family:'Barlow Condensed', sans-serif; font-size:4rem; font-weight:900; line-height:1; text-transform:uppercase;">Noise-Cancelling Headphones</h1>
+            <div style="font-size:2rem; font-weight:700; margin-top:1rem;">$299.00</div>
+        </div>
+        <p style="color:#888; line-height:1.8;">Experience true silence and premium audio quality. These meticulously engineered headphones block out the noise of the world, allowing you to focus completely on the sound that matters. Includes 40-hour battery life and fast-charging.</p>
+        
+        <div style="display:flex; gap:1rem;">
+            <button class="add-to-bag" style="flex:1; padding:1.2rem; font-size:1.1rem;" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299, './assets/product_headphones.png')">ADD TO BAG</button>
+            <button class="wishlist-heart-btn" onclick="toggleWishlist('dummy-1', 'Noise-Cancelling Headphones', '/product.html', './assets/product_headphones.png', this)" style="background:transparent; border:1px solid #333; border-radius:4px; padding:0 1.5rem; color:#fff; cursor:pointer; font-size:1.5rem;">♥</button>
+        </div>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding-top:2rem; border-top:1px solid #333;">
+            <div><strong style="color:#fff;">Shipping:</strong> <span style="color:#888;">Free Worldwide</span></div>
+            <div><strong style="color:#fff;">Returns:</strong> <span style="color:#888;">4-day Guarantee</span></div>
+        </div>
+    </div>
+</section>
 
   </main>
 

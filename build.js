@@ -4,6 +4,43 @@ let rawTheme = fs.readFileSync('layout/theme.liquid', 'utf8');
 let rawIndex = fs.readFileSync('templates/index.liquid', 'utf8');
 let rawCollection = fs.readFileSync('templates/collection.liquid', 'utf8');
 let rawManifesto = fs.readFileSync('templates/page.manifesto.liquid', 'utf8');
+let appJs = fs.readFileSync('assets/app.js', 'utf8');
+
+// --- Fix app.js (Cart Sidebar missing fix + Wishlist) ---
+appJs = appJs.replace(/window\.location\.href='\{\{ routes\.cart_url \}\}'/g, "openCart()");
+// Fix addToCart logic so it uses actual dummy images in the sidebar
+appJs = appJs.replace(
+  /function addToCart\(id, name, price\)/g, 
+  "function addToCart(id, name, price, img)"
+);
+appJs = appJs.replace(
+  /cart\.push\(\{ id, name, price, qty: 1 \}\);/g, 
+  "cart.push({ id, name, price, qty: 1, img: img || './assets/product_headphones.png' });"
+);
+appJs = appJs.replace(
+  /<div class="cart-item-name">\$\{item.name\}<\/div>/g, 
+  `<img src="\${item.img}" style="width:50px; height:50px; border-radius:4px; object-fit:cover; border:1px solid #333;">
+   <div><div class="cart-item-name">\${item.name}</div>`
+);
+appJs = appJs.replace(
+  /<div class="cart-item-price">\$\$\{item.price\} × \$\{item.qty\}<\/div>/g, 
+  `<div class="cart-item-price">$\${item.price} × \${item.qty}</div></div>`
+);
+appJs = appJs.replace(
+  /cartItemsEl\.innerHTML = '<div class="cart-empty">YOUR BAG IS EMPTY\.<\/div>';/g, 
+  `cartItemsEl.innerHTML = '<div class="cart-empty" style="padding: 2rem; color: #888;">YOUR BAG IS EMPTY.</div>';`
+);
+
+// We must append cart checkout button in JS cart
+if (!appJs.includes('checkout-btn')) {
+    appJs = appJs.replace(
+      /cartFooter\.style\.display = 'block';/g,
+      `cartFooter.style.display = 'block';
+       cartFooter.innerHTML = \`<div style="font-size:1.2rem; font-weight:bold; margin-bottom:1rem;">TOTAL: $\${totalPrice}</div><button class="add-to-bag" style="width:100%" onclick="alert('Checkout Simulated for Portfolio Demo!')">CHECKOUT</button>\`;`
+    );
+}
+fs.writeFileSync('assets/app.js', appJs);
+
 
 // --- 1. Clean theme.liquid (creates base theme layout) ---
 let theme = rawTheme;
@@ -16,32 +53,46 @@ theme = theme.replace(/{{\s*'([^']+)'\s*\|\s*asset_url\s*}}/g, './assets/$1');
 // Simplify Logo
 theme = theme.replace(/{% if settings.logo != blank %}[\s\S]*?{% else %}/, '');
 theme = theme.replace(/{% endif %}/, '');
-
-// Simplfy Favicon
 theme = theme.replace(/{% if settings.favicon != blank %}[\s\S]*?{% else %}/, '');
 theme = theme.replace(/{% endif %}/, '');
 
-// Clean other liquid tags
-theme = theme.replace(/{{ content_for_header }}/g, '');
 // UPDATE NAVIGATION LINKS FOR VERCEL
+theme = theme.replace(/{{ content_for_header }}/g, '');
 theme = theme.replace(/{{ routes.root_url }}/g, '/index.html');
 theme = theme.replace(/{{ routes.all_products_collection_url }}/g, '/collection.html');
 theme = theme.replace(/\/pages\/manifesto/g, '/manifesto.html');
 theme = theme.replace(/{{ routes.account_url }}/g, '#');
 theme = theme.replace(/{{ routes.account_login_url }}/g, '#');
-theme = theme.replace(/{{ routes.cart_url }}/g, '#');
 theme = theme.replace(/{{ routes.search_url }}/g, '#');
+
+// Route the cart navbar button to open the sidebar instead of a page
+theme = theme.replace(/onclick="window\.location\.href='{{ routes\.cart_url }}'"/g, 'onclick="openCart()"');
 
 theme = theme.replace(/{{ cart.item_count }}/g, '0');
 theme = theme.replace(/{{ shop.name \| escape }}/g, 'DailyScroll');
 theme = theme.replace(/{{ shop.name \| upcase }}/g, 'DAILYSCROLL');
 theme = theme.replace(/{{ 'now' \| date: '%Y' }}/g, '2026');
-
-// Remove customer check
 theme = theme.replace(/{% if customer %}/g, '');
-
-// Remove collection loop in footer
 theme = theme.replace(/{% for collection in collections limit:3 %}[\s\S]*?{% endfor %}/g, '');
+
+// Inject missing Cart Sidebar HTML just before closing body
+const cartDrawerHtml = `
+  <div class="wishlist-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="wishlist-drawer" id="cartSidebar">
+    <div class="wishlist-drawer-header">
+      <div class="wishlist-drawer-title">— /// BAG</div>
+      <button class="wishlist-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="wishlist-drawer-body">
+      <div id="cartItems" style="display:flex; flex-direction:column; gap:1rem;"></div>
+      <div id="cartFooter" style="margin-top:2rem; padding-top:1rem; border-top:1px solid #333; display:none;"></div>
+    </div>
+  </div>
+`;
+theme = theme.replace('</body>', cartDrawerHtml + '\n</body>');
+
+// Fix global wishlist toggling links to go to product.html
+theme = theme.replace(/<a href="' \+ p\.url \+ '"/g, '<a href="/product.html"');
 
 
 // --- 2. Clean index.liquid (Homepage) ---
@@ -59,6 +110,13 @@ index = index.replace(/{{ routes.all_products_collection_url }}/g, '/collection.
 index = index.replace(/{% form 'customer', class: 'newsletter-form' %}/g, '<form class="newsletter-form" onsubmit="handleNewsletter(event)">');
 index = index.replace(/{% endform %}/g, '</form>');
 
+// Update addToCart signatures to include image
+index = index.replace(/addToCart\('dummy-1', 'Noise-Cancelling Headphones', 299\)/g, "addToCart('dummy-1', 'Noise-Cancelling Headphones', 299, './assets/product_headphones.png')");
+index = index.replace(/addToCart\('dummy-2', 'Minimalist Desk Lamp', 129\)/g, "addToCart('dummy-2', 'Minimalist Desk Lamp', 129, './assets/product_lamp.png')");
+index = index.replace(/addToCart\('dummy-3', 'Matte Black Chronograph', 195\)/g, "addToCart('dummy-3', 'Matte Black Chronograph', 195, './assets/product_watch.png')");
+index = index.replace(/addToCart\('dummy-4', '360° Portable Speaker', 149\)/g, "addToCart('dummy-4', '360° Portable Speaker', 149, './assets/product_speaker.png')");
+
+
 let indexHtml = theme.replace('{{ content_for_layout }}', index);
 indexHtml = indexHtml.replace(/{{[^}]+}}/g, '').replace(/{%[^}]+%}/g, '');
 fs.writeFileSync('index.html', indexHtml);
@@ -68,7 +126,6 @@ fs.writeFileSync('index.html', indexHtml);
 let collection = rawCollection;
 collection = collection.replace(/{{ collection.title \| upcase }}/g, 'ALL OBJECTS');
 collection = collection.replace(/{{ collection.title \| escape }}/g, 'ALL OBJECTS');
-// Remove liquid if/else blocks and logic
 collection = collection.replace(/{% if collection.description != blank %}[\s\S]*?{% endif %}/g, '');
 collection = collection.replace(/{% for col in collections %}[\s\S]*?{% endfor %}/g, '');
 collection = collection.replace(/{% if settings.show_ad_shop and settings.ad_image != blank %}[\s\S]*?{% endif %}/g, '');
@@ -80,6 +137,12 @@ if (cStart > -1 && cElse > -1) {
 }
 collection = collection.replace(/{% endif %}/g, '');
 collection = collection.replace(/{{\s*'([^']+)'\s*\|\s*asset_url\s*}}/g, './assets/$1');
+
+collection = collection.replace(/addToCart\('dummy-1', 'Noise-Cancelling Headphones', 299\)/g, "addToCart('dummy-1', 'Noise-Cancelling Headphones', 299, './assets/product_headphones.png')");
+collection = collection.replace(/addToCart\('dummy-2', 'Minimalist Desk Lamp', 129\)/g, "addToCart('dummy-2', 'Minimalist Desk Lamp', 129, './assets/product_lamp.png')");
+collection = collection.replace(/addToCart\('dummy-3', 'Matte Black Chronograph', 195\)/g, "addToCart('dummy-3', 'Matte Black Chronograph', 195, './assets/product_watch.png')");
+collection = collection.replace(/addToCart\('dummy-5', 'Designer Tech Sneakers', 210\)/g, "addToCart('dummy-5', 'Designer Tech Sneakers', 210, './assets/product_shoes.png')");
+
 
 let collectionHtml = theme.replace('{{ content_for_layout }}', collection);
 collectionHtml = collectionHtml.replace(/{{[^}]+}}/g, '').replace(/{%[^}]+%}/g, '');
@@ -95,4 +158,56 @@ let manifestoHtml = theme.replace('{{ content_for_layout }}', manifesto);
 manifestoHtml = manifestoHtml.replace(/{{[^}]+}}/g, '').replace(/{%[^}]+%}/g, '');
 fs.writeFileSync('manifesto.html', manifestoHtml);
 
-console.log('Static site (index.html, collection.html, manifesto.html) generated perfectly for Vercel!');
+// --- 5. Generate a generic product.html ---
+let productContent = `
+<section class="new-drop-section" style="padding-top:150px; min-height:80vh; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; padding-left:5%; padding-right:5%;">
+    <div style="background:#0a0a0a; border:1px solid #333; border-radius:12px; display:flex; align-items:center; justify-content:center; padding:2rem;">
+        <img src="./assets/product_headphones.png" style="width:100%; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.5));" id="prodMainImg">
+    </div>
+    <div style="display:flex; flex-direction:column; justify-content:center; gap:2rem;">
+        <div>
+            <div style="font-size:0.8rem; letter-spacing:0.2em; color:var(--accent); margin-bottom:1rem;">/// DAILYSCROLL EXCLUSIVE</div>
+            <h1 style="font-family:'Barlow Condensed', sans-serif; font-size:4rem; font-weight:900; line-height:1; text-transform:uppercase;">Noise-Cancelling Headphones</h1>
+            <div style="font-size:2rem; font-weight:700; margin-top:1rem;">$299.00</div>
+        </div>
+        <p style="color:#888; line-height:1.8;">Experience true silence and premium audio quality. These meticulously engineered headphones block out the noise of the world, allowing you to focus completely on the sound that matters. Includes 40-hour battery life and fast-charging.</p>
+        
+        <div style="display:flex; gap:1rem;">
+            <button class="add-to-bag" style="flex:1; padding:1.2rem; font-size:1.1rem;" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299, './assets/product_headphones.png')">ADD TO BAG</button>
+            <button class="wishlist-heart-btn" onclick="toggleWishlist('dummy-1', 'Noise-Cancelling Headphones', '/product.html', './assets/product_headphones.png', this)" style="background:transparent; border:1px solid #333; border-radius:4px; padding:0 1.5rem; color:#fff; cursor:pointer; font-size:1.5rem;">♥</button>
+        </div>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding-top:2rem; border-top:1px solid #333;">
+            <div><strong style="color:#fff;">Shipping:</strong> <span style="color:#888;">Free Worldwide</span></div>
+            <div><strong style="color:#fff;">Returns:</strong> <span style="color:#888;">4-day Guarantee</span></div>
+        </div>
+    </div>
+</section>
+`;
+
+let productHtml = theme.replace('{{ content_for_layout }}', productContent);
+productHtml = productHtml.replace(/{{[^}]+}}/g, '').replace(/{%[^}]+%}/g, '');
+fs.writeFileSync('product.html', productHtml);
+
+
+// --- 6. Global Fixes for all HTML files ---
+const files = ['index.html', 'collection.html', 'manifesto.html'];
+files.forEach(file => {
+    let content = fs.readFileSync(file, 'utf8');
+    // Replace empty product links with the new product page
+    content = content.replace(/href=""/g, 'href="/product.html"');
+    // Wrap product images in anchor tag if they aren't already
+    content = content.replace(/<div class="product-img-wrap">\s*<img/g, '<div class="product-img-wrap"><a href="/product.html"><img');
+    content = content.replace(/<img src="\.\/assets\/product_([^"]+)" alt="([^"]+)" class="product-img" \/>/g, '<img src="./assets/product_$1" alt="$2" class="product-img" /></a>');
+    
+    // Also fix the featured product 
+    content = content.replace(/<div class="product-img-wrap featured-img-wrap">\s*<img/g, '<div class="product-img-wrap featured-img-wrap"><a href="/product.html"><img');
+    
+    // Replace the title link to point to product
+    content = content.replace(/<div><div class="product-name">/g, '<div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">');
+    content = content.replace(/<\/div><\/div>\s*<div class="product-price">/g, '</div></a></div><div class="product-price">');
+    
+    fs.writeFileSync(file, content);
+});
+
+console.log('Full functioning static site compiled! Cart, Wishlist, and Checkout simulated perfectly.');

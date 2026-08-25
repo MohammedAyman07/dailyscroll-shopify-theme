@@ -52,7 +52,7 @@
       <button class="nav-btn search-btn" aria-label="Search" onclick="document.getElementById('searchModal').classList.add('active')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
-      <button class="nav-btn cart-btn" id="cartBtn" aria-label="Cart" onclick="window.location.href='#'">
+      <button class="nav-btn cart-btn" id="cartBtn" aria-label="Cart" onclick="openCart()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
@@ -211,59 +211,51 @@
       <!-- DUMMY PRODUCTS FOR PREVIEW / PORTFOLIO PURPOSES -->
       <!-- If the Shopify store has no products, this fallback will render a beautiful UI for recruiters -->
       <div class="product-card" data-id="dummy-1">
-        <div class="product-img-wrap">
-          <img src="./assets/product_headphones.png" alt="Premium Wireless Headphones" class="product-img" />
+        <div class="product-img-wrap"><a href="/product.html"><img src="./assets/product_headphones.png" alt="Premium Wireless Headphones" class="product-img" /></a>
           <div class="product-overlay"><span>VIEW OBJECT</span></div>
         </div>
         <div class="product-info">
           <div class="product-meta">
-            <div><div class="product-name">Noise-Cancelling Headphones</div></div>
-            <div class="product-price">$299.00</div>
+            <div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">Noise-Cancelling Headphones</div></a></div><div class="product-price">$299.00</div>
           </div>
-          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299)">ADD TO BAG</button></div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299, './assets/product_headphones.png')">ADD TO BAG</button></div>
         </div>
       </div>
       
       <div class="product-card" data-id="dummy-2">
-        <div class="product-img-wrap">
-          <img src="./assets/product_lamp.png" alt="Minimalist Desk Lamp" class="product-img" />
+        <div class="product-img-wrap"><a href="/product.html"><img src="./assets/product_lamp.png" alt="Minimalist Desk Lamp" class="product-img" /></a>
           <div class="product-overlay"><span>VIEW OBJECT</span></div>
         </div>
         <div class="product-info">
           <div class="product-meta">
-            <div><div class="product-name">Minimalist Desk Lamp</div></div>
-            <div class="product-price">$129.00</div>
+            <div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">Minimalist Desk Lamp</div></a></div><div class="product-price">$129.00</div>
           </div>
-          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-2', 'Minimalist Desk Lamp', 129)">ADD TO BAG</button></div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-2', 'Minimalist Desk Lamp', 129, './assets/product_lamp.png')">ADD TO BAG</button></div>
         </div>
       </div>
       
       <div class="product-card" data-id="dummy-3">
-        <div class="product-img-wrap">
-          <img src="./assets/product_watch.png" alt="Chronograph Watch" class="product-img" />
+        <div class="product-img-wrap"><a href="/product.html"><img src="./assets/product_watch.png" alt="Chronograph Watch" class="product-img" /></a>
           <div class="product-overlay"><span>VIEW OBJECT</span></div>
         </div>
         <div class="product-info">
           <div class="product-meta">
-            <div><div class="product-name">Matte Black Chronograph</div></div>
-            <div class="product-price">$195.00</div>
+            <div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">Matte Black Chronograph</div></a></div><div class="product-price">$195.00</div>
           </div>
-          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-3', 'Matte Black Chronograph', 195)">ADD TO BAG</button></div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-3', 'Matte Black Chronograph', 195, './assets/product_watch.png')">ADD TO BAG</button></div>
         </div>
       </div>
 
       <div class="product-card featured-card" data-id="dummy-4">
-        <div class="product-img-wrap featured-img-wrap">
-          <img src="./assets/product_speaker.png" alt="Portable Speaker" class="product-img" />
+        <div class="product-img-wrap featured-img-wrap"><a href="/product.html"><img src="./assets/product_speaker.png" alt="Portable Speaker" class="product-img" /></a>
           <div class="product-overlay"><span>VIEW OBJECT</span></div>
           <div class="featured-badge">FEATURED</div>
         </div>
         <div class="product-info">
           <div class="product-meta">
-            <div><div class="product-name">360° Portable Speaker</div></div>
-            <div class="product-price">$149.00</div>
+            <div><a href="/product.html" style="text-decoration:none; color:inherit;"><div class="product-name">360° Portable Speaker</div></a></div><div class="product-price">$149.00</div>
           </div>
-          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-4', '360° Portable Speaker', 149)">ADD TO BAG</button></div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-4', '360° Portable Speaker', 149, './assets/product_speaker.png')">ADD TO BAG</button></div>
         </div>
       </div>
     
@@ -474,9 +466,9 @@
       emptyEl.style.display = 'none';
       itemsEl.innerHTML = list.map(function(p) {
         return '<div class="wishlist-item">' +
-          '<a href="' + p.url + '" class="wishlist-item-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></a>' +
+          '<a href="/product.html" class="wishlist-item-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></a>' +
           '<div class="wishlist-item-info">' +
-            '<a href="' + p.url + '" class="wishlist-item-title">' + p.title + '</a>' +
+            '<a href="/product.html" class="wishlist-item-title">' + p.title + '</a>' +
           '</div>' +
           '<button class="wishlist-item-remove" onclick="removeWishlistItem(\'' + p.id + '\')" aria-label="Remove">✕</button>' +
         '</div>';
@@ -535,7 +527,7 @@
         return;
       }
       container.innerHTML = list.map(function(p) {
-        return '<a href="' + p.url + '" class="amz-rp-card">' +
+        return '<a href="/product.html" class="amz-rp-card">' +
           '<div class="amz-rp-img-wrap"><img src="' + p.img + '" alt="' + p.title + '"></div>' +
           '<div class="amz-rp-info">' +
             '<div class="amz-rp-title">' + p.title + '</div>' +
@@ -545,5 +537,18 @@
       }).join('');
     }
   </script>
+
+  <div class="wishlist-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="wishlist-drawer" id="cartSidebar">
+    <div class="wishlist-drawer-header">
+      <div class="wishlist-drawer-title">— /// BAG</div>
+      <button class="wishlist-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="wishlist-drawer-body">
+      <div id="cartItems" style="display:flex; flex-direction:column; gap:1rem;"></div>
+      <div id="cartFooter" style="margin-top:2rem; padding-top:1rem; border-top:1px solid #333; display:none;"></div>
+    </div>
+  </div>
+
 </body>
 </html>

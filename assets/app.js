@@ -72,12 +72,12 @@ initReveal();
 // =============================================
 let cart = [];
 
-function addToCart(id, name, price) {
+function addToCart(id, name, price, img) {
   const existing = cart.find(item => item.id === id);
   if (existing) {
     existing.qty++;
   } else {
-    cart.push({ id, name, price, qty: 1 });
+    cart.push({ id, name, price, qty: 1, img: img || './assets/product_headphones.png' });
   }
   updateCart();
   showToast(`${name} added to bag`);
@@ -104,15 +104,17 @@ function updateCart() {
   const cartFooter = document.getElementById('cartFooter');
 
   if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<div class="cart-empty">YOUR BAG IS EMPTY.</div>';
+    cartItemsEl.innerHTML = '<div class="cart-empty" style="padding: 2rem; color: #888;">YOUR BAG IS EMPTY.</div>';
     cartFooter.style.display = 'none';
   } else {
     cartFooter.style.display = 'block';
+       cartFooter.innerHTML = `<div style="font-size:1.2rem; font-weight:bold; margin-bottom:1rem;">TOTAL: ${totalPrice}</div><button class="add-to-bag" style="width:100%" onclick="alert('Checkout Simulated for Portfolio Demo!')">CHECKOUT</button>`;
     cartItemsEl.innerHTML = cart.map(item => `
       <div class="cart-item">
         <div>
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-price">$${item.price} × ${item.qty}</div>
+          <img src="${item.img}" style="width:50px; height:50px; border-radius:4px; object-fit:cover; border:1px solid #333;">
+   <div><div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price} × ${item.qty}</div></div>
         </div>
         <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
       </div>
