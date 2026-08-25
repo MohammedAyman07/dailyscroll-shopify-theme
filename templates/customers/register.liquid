@@ -1,0 +1,33 @@
+<!-- REGISTER PAGE -->
+<style>
+  .customer-page { padding: 150px 5% 100px; max-width: 500px; margin: 0 auto; text-align: center; min-height: 80vh; }
+  .customer-title { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; text-transform: uppercase; margin-bottom: 2rem; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.3); }
+  .customer-form input { width: 100%; background: transparent; border: 1px solid var(--border); color: var(--text-primary); padding: 16px; margin-bottom: 16px; font-family: var(--font); font-size: 1rem; outline: none; transition: border-color 0.3s; }
+  .customer-form input:focus { border-color: var(--accent); }
+  .customer-form .btn { width: 100%; background: var(--accent); color: var(--black); border: none; padding: 18px; font-family: var(--font); font-weight: 900; font-size: 1rem; letter-spacing: 0.1em; cursor: pointer; text-transform: uppercase; margin-top: 10px; transition: background 0.3s, transform 0.2s; }
+  .customer-form .btn:hover { background: #fff; transform: translateY(-2px); }
+  .customer-links { margin-top: 24px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; display: flex; justify-content: center; }
+  .customer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  .customer-links a:hover { color: var(--accent); }
+  .form-errors { color: #ff4444; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem; background: rgba(255,68,68,0.1); padding: 10px; border: 1px solid #ff4444; }
+</style>
+
+<div class="customer-page">
+  <div class="section-label" style="justify-content: center; margin-bottom: 1rem;">— /// JOIN THE DROP</div>
+  <h1 class="customer-title">REGISTER</h1>
+  
+  {% form 'create_customer', class: 'customer-form' %}
+    {{ form.errors | default_errors }}
+    
+    <input type="text" name="customer[first_name]" placeholder="FIRST NAME">
+    <input type="text" name="customer[last_name]" placeholder="LAST NAME">
+    <input type="email" name="customer[email]" placeholder="EMAIL ADDRESS" required>
+    <input type="password" name="customer[password]" placeholder="PASSWORD" required>
+    
+    <button type="submit" class="btn">CREATE ACCOUNT</button>
+    
+    <div class="customer-links">
+      <a href="{{ routes.account_login_url }}">ALREADY HAVE AN ACCOUNT? LOGIN</a>
+    </div>
+  {% endform %}
+</div>

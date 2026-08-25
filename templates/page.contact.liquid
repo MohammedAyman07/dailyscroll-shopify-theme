@@ -1,0 +1,124 @@
+<!-- CONTACT PAGE -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #888;
+    line-height: 1;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .contact-form {
+    margin-top: 3rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 16px;
+    margin-bottom: 16px;
+    font-family: var(--font);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--accent);
+  }
+  .contact-form .btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 18px;
+    font-family: var(--font);
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .contact-form .btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+  .form-success {
+    background: rgba(229, 255, 0, 0.1);
+    color: var(--accent);
+    padding: 1rem;
+    border: 1px solid var(--accent);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  .form-errors {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+    padding: 1rem;
+    border: 1px solid #ff4444;
+    margin-bottom: 2rem;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <div class="section-label">— /// GET IN TOUCH</div>
+  <h1 class="custom-page-title">CONTACT</h1>
+  
+  <div class="custom-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% endif %}
+
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px; padding:20px 24px; border:1px solid #1a1a1a; background:#0d0d0d;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.75rem; letter-spacing:0.2em; color:#555; text-transform:uppercase; margin-bottom:4px;">Email Us Directly</div>
+        <a href="mailto:dailyscrollstore@gmail.com" style="font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:var(--accent); text-decoration:none; letter-spacing:0.05em; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">dailyscrollstore@gmail.com</a>
+      </div>
+    </div>
+
+    {% form 'contact', class: 'contact-form' %}
+      {% if form.posted_successfully? %}
+        <div class="form-success">
+          THANK YOU! YOUR MESSAGE HAS BEEN SENT SUCCESSFULLY.
+        </div>
+      {% endif %}
+
+      {{ form.errors | default_errors }}
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <input type="text" name="contact[name]" placeholder="NAME" required>
+        <input type="email" name="contact[email]" placeholder="EMAIL" required>
+      </div>
+      <input type="text" name="contact[phone]" placeholder="PHONE NUMBER (OPTIONAL)">
+      <textarea name="contact[body]" placeholder="YOUR MESSAGE" required></textarea>
+      
+      <button type="submit" class="btn">SEND MESSAGE</button>
+    {% endform %}
+  </div>
+</div>

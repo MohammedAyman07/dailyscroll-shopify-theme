@@ -1,0 +1,29 @@
+<!-- PAGE SECTION -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: #ddd;
+    font-size: 1.1rem;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <h1 class="custom-page-title">{{ page.title }}</h1>
+  <div class="custom-page-content">
+    {{ page.content }}
+  </div>
+</div>

@@ -1,0 +1,111 @@
+# DailyScroll Black Theme
+
+A premium, high-performance Shopify theme designed for modern e-commerce brands. DailyScroll Black Theme features a sleek dark aesthetic, hardware-accelerated 3D WebGL interactions, and a clean, conversion-optimized architecture.
+
+## Overview
+
+In the modern e-commerce landscape, standing out requires more than just a functional storefront—it requires an immersive experience. This custom Shopify theme was built to provide a hyper-realistic, interactive shopping environment without compromising on performance or load times. It seamlessly integrates vanilla JavaScript and Three.js with Shopify's Liquid templating engine to deliver a fluid, native-feeling application.
+
+## Features
+
+- **Immersive 3D WebGL Experience**: Features an interactive, mouse-reactive 3D orb on the hero section powered by Three.js.
+- **Dynamic Cart System**: Custom, lightweight AJAX-style cart drawer implementation without heavy third-party dependencies.
+- **Global Wishlist Drawer**: Integrated local-storage-backed wishlist system built natively into the theme.
+- **Scroll Parallax & Animations**: Hardware-accelerated CSS animations and IntersectionObserver-based scroll reveals.
+- **Dark Mode Architecture**: A carefully curated deep-black aesthetic with neon-accented design tokens.
+- **Responsive & Accessible**: Fully fluid typography and layout scaling with keyboard-accessible navigation.
+
+## Tech Stack
+
+- **Framework**: Shopify Liquid
+- **Styling**: Vanilla CSS3 (CSS Variables, Grid, Flexbox)
+- **Interactivity**: Vanilla JavaScript (ES6+), Three.js
+- **Architecture**: Modular asset management and Shopify Section/Template structure
+
+## Architecture
+
+The project follows standard Shopify theme architecture with a focus on modularity:
+
+- **`layout/theme.liquid`**: The global wrapper containing the master layout, navigation, global drawers (wishlist/search), and footer.
+- **`templates/`**: Liquid templates mapping to Shopify's core page types (index, product, collection, cart, pages, customers).
+- **`assets/`**: Uncompiled, lightweight assets.
+  - `app.js`: Core application logic (cart, wishlist, scroll animations, layout handling).
+  - `orb3d.js`: Three.js integration for the interactive 3D hero element.
+  - `style.css`: Global stylesheet utilizing CSS variables for consistent theming.
+- **`config/`**: JSON configuration for Shopify's theme customizer.
+
+## Project Structure
+
+```text
+├── assets/
+│   ├── app.js               # Main application logic
+│   ├── orb3d.js             # Three.js 3D rendering logic
+│   ├── style.css            # Global styling
+│   └── ...images            # Static assets
+├── config/
+│   ├── settings_data.json   # Saved theme settings
+│   └── settings_schema.json # Theme editor schema
+├── layout/
+│   └── theme.liquid         # Main layout wrapper
+└── templates/                 
+    ├── index.liquid         # Homepage template
+    ├── product.liquid       # Product Detail Page
+    ├── collection.liquid    # Collection/Shop Page
+    ├── cart.liquid          # Fallback Cart Page
+    └── ...                  # Customer and static pages
+```
+
+## How It Works
+
+The theme is designed to be uploaded directly to a Shopify store. It leverages standard Liquid objects (`{{ product.title }}`, `{{ cart.item_count }}`) to pull dynamic store data. The interactive components (like the Wishlist and recently viewed items) utilize `localStorage` to maintain state across page loads without requiring constant backend API calls, reducing server load and increasing speed.
+
+## Installation
+
+To install this theme on your Shopify store:
+
+1. Clone or download this repository as a `.zip` file.
+2. Navigate to your Shopify Admin Panel.
+3. Go to **Online Store** > **Themes**.
+4. Click **Add theme** > **Upload zip file**.
+5. Select the downloaded `.zip` file and upload.
+6. Once uploaded, click **Publish** to make it your active theme.
+
+## Configuration
+
+The theme is fully customizable via the Shopify Theme Editor.
+
+1. Navigate to **Online Store** > **Themes**.
+2. Click **Customize** on the DailyScroll theme.
+3. Adjust typography, colors, layout settings, and homepage sections through the visual interface.
+
+*No environment variables or `.env` files are required for local development, as all settings are managed via Shopify's standard `settings_data.json`.*
+
+## Running the Project Locally
+
+If you wish to develop locally using the Shopify CLI:
+
+```bash
+# 1. Install Shopify CLI
+npm install -g @shopify/cli
+
+# 2. Login to your store
+shopify login --store your-store-name.myshopify.com
+
+# 3. Serve the theme locally
+shopify theme dev
+```
+
+## Technical Highlights
+
+- **Procedural 3D Environment**: The Three.js orb doesn't rely on heavy external HDR textures. Instead, `orb3d.js` generates a procedural cubemap environment via HTML5 Canvas on the fly, dramatically reducing the theme's initial payload size while maintaining hyper-realistic lighting and reflections.
+- **IntersectionObserver Animations**: Scroll animations are heavily optimized using `IntersectionObserver`, ensuring that elements only animate when they enter the viewport, keeping the main thread free and maintaining 60fps scrolling.
+
+## Challenges & Solutions
+
+**Challenge:** Integrating complex 3D graphics in an e-commerce setting often leads to unacceptably high time-to-interactive (TTI) and payload sizes due to massive textures and libraries.
+
+**Solution:** By utilizing a procedurally generated environment map and lazy-loading non-critical scripts, the theme achieves a high-end 3D aesthetic while keeping asset sizes incredibly small. The 3D logic is isolated in `orb3d.js`, ensuring it doesn't block the main parsing of the core `app.js` and layout structure.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).

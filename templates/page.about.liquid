@@ -1,0 +1,55 @@
+<!-- ABOUT PAGE -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #888;
+    line-height: 1;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  .custom-page-content p {
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <div class="section-label">— /// OUR STORY</div>
+  <h1 class="custom-page-title">ABOUT US</h1>
+  <div class="custom-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <h3 style="color:var(--accent); margin-bottom: 1.5rem; font-family:'Barlow Condensed', sans-serif; font-size: 2rem; text-transform: uppercase; font-weight: 800;">WE ARE NEW. WE ARE REAL.</h3>
+
+      <p>DAILY/SCROLL is a new and growing online store — and we believe in being completely honest with you about that. We are not a faceless corporation with thousands of reviews. We are a small, passionate team who genuinely cares about every single order that goes out.</p>
+
+      <p>We started this store because we were tired of the same overpriced, low-quality products everywhere online. So we decided to build something different — a curated shop where <strong style="color:var(--text-primary);">every product is hand-picked, personally tested, and held to a high standard</strong> before it ever reaches you.</p>
+
+      <p>Being new means we have everything to prove — and that is exactly why we work harder than anyone. Your trust is not taken for granted here. Every order, every message, every return is handled personally and professionally.</p>
+
+      <h3 style="color:var(--accent); margin: 2rem 0 1rem; font-family:'Barlow Condensed', sans-serif; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">OUR PROMISE TO YOU</h3>
+      <p>🛡️ <strong>30-Day Money-Back Guarantee</strong> — Full refund, no questions asked.<br/>
+      📦 <strong>Free Worldwide Shipping</strong> — Tracked and insured on every order.<br/>
+      🔒 <strong>Secure Checkout</strong> — Powered by Shopify's bank-grade encryption.<br/>
+      ⚡ <strong>Fast Support</strong> — We respond within 24 hours. Always.</p>
+
+      <p style="margin-top: 2rem; font-style: italic; color: var(--accent);">"Curated for excellence. Trusted by thousands."</p>
+    {% endif %}
+  </div>
+</div>

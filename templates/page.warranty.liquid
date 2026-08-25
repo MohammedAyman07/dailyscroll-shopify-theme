@@ -1,0 +1,44 @@
+<!-- WARRANTY PAGE -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #888;
+    line-height: 1;
+    line-height: 1;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  .custom-page-content p {
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <div class="section-label">— /// OUR GUARANTEE</div>
+  <h1 class="custom-page-title">WARRANTY</h1>
+  <div class="custom-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <h3 style="color:var(--accent); margin-bottom: 1.5rem; font-family:'Barlow Condensed', sans-serif; font-size: 2rem; text-transform: uppercase; font-weight: 800;">LIFETIME GUARANTEE</h3>
+      <p>Every object we sell is built to last. If your item fails due to a manufacturing defect, we will repair or replace it, free of charge.</p>
+      <p>Our warranty does not cover normal wear and tear, misuse, or damage caused by accidents. However, if you believe your item hasn't met our rigorous quality standards, please reach out.</p>
+    {% endif %}
+  </div>
+</div>

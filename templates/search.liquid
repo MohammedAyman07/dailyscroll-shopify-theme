@@ -1,0 +1,71 @@
+<!-- SEARCH SECTION -->
+<section class="new-drop-section" style="padding-top: 150px; min-height: 80vh;">
+  <div class="section-label">— /// SEARCH RESULTS</div>
+  <h2 class="section-big-title">
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        {{ search.results_count }} OBJECTS FOUND
+      {% else %}
+        NO OBJECTS FOUND
+      {% endif %}
+    {% else %}
+      SEARCH OBJECTS
+    {% endif %}
+  </h2>
+
+  {% if search.performed %}
+    <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto; font-family: 'Barlow', sans-serif; letter-spacing: 0.1em; text-transform: uppercase;">
+      RESULTS FOR: <strong style="color:var(--accent);">"{{ search.terms | escape }}"</strong>
+    </p>
+  {% else %}
+    <div style="max-width: 600px; margin: 0 auto 3rem auto;">
+      <form action="{{ routes.search_url }}" method="get" class="search-form" style="position:relative;">
+        <input type="text" name="q" placeholder="SEARCH OBJECTS..." class="search-input" autofocus>
+      </form>
+    </div>
+  {% endif %}
+
+  <div class="products-grid">
+    {% if search.performed and search.results_count > 0 %}
+      {% paginate search.results by 12 %}
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            <div class="product-card">
+              <a href="{{ item.url }}" class="stretched-link" aria-label="{{ item.title | escape }}"></a>
+              <div class="product-img-wrap">
+                <a href="{{ item.url }}">
+                  <img src="{{ item.featured_image | img_url: '600x' }}" alt="{{ item.title | escape }}" class="product-img" />
+                </a>
+                <div class="product-overlay">
+                  <a href="{{ item.url }}"><span>VIEW OBJECT</span></a>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-meta">
+                  <div>
+                    <a href="{{ item.url }}" style="text-decoration:none; color:inherit;">
+                      <div class="product-name">{{ item.title }}</div>
+                    </a>
+                  </div>
+                  <div class="product-price">{{ item.price | money }}</div>
+                </div>
+                <div class="product-actions">
+                  <form method="post" action="/cart/add">
+                    <input type="hidden" name="id" value="{{ item.variants.first.id }}" />
+                    <button type="submit" class="add-to-bag">ADD TO BAG</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginate.pages > 1 %}
+          <div class="pagination" style="grid-column: 1 / -1; text-align: center; padding-top: 2rem;">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  </div>
+</section>

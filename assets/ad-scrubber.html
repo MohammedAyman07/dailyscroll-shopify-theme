@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Smarter. Not Harder. — DailyScroll Best Seller</title>
+  <meta name="description" content="Meet the PUFTEM Electric Spin Scrubber — 6 replaceable heads, 2 speeds, cordless freedom. Our #1 Best Seller for a reason. Shop now at DailyScroll." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =============================================
+       RESET & TOKENS
+    ============================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent:    #c8ff00;
+      --accent-dim: rgba(200,255,0,0.12);
+      --accent-glow: rgba(200,255,0,0.35);
+      --black:     #000000;
+      --dark:      #060606;
+      --mid:       #0f0f0f;
+      --border:    rgba(255,255,255,0.07);
+      --white:     #ffffff;
+      --muted:     rgba(255,255,255,0.48);
+      --dim:       rgba(255,255,255,0.22);
+      --font-cond: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      --radius:    4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      letter-spacing: 0.04em;
+    }
+
+    /* =============================================
+       TRUST BAR
+    ============================================= */
+    .trust-bar {
+      background: var(--accent);
+      color: var(--black);
+      text-align: center;
+      padding: 10px 16px;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .trust-bar span { opacity: 0.5; }
+
+    /* =============================================
+       HEADER / NAV
+    ============================================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-cond);
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo em { color: var(--accent); font-style: normal; }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 11px 26px;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    /* =============================================
+       HERO / AD SECTION
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse 70% 80% at 65% 50%, #0d1a00 0%, #000 55%);
+    }
+
+    /* Animated background grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,255,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,255,0,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPan 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridPan {
+      0%   { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* Bottom fade */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--black));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ---- LEFT COPY ---- */
+    .hero-copy {
+      position: relative;
+      z-index: 5;
+      padding: 80px 0 80px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .badge-bestseller {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,255,0,0.3);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      width: fit-content;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    }
+
+    .badge-bestseller::before {
+      content: '★';
+      font-size: 0.8rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-cond);
+      font-weight: 900;
+      font-size: clamp(52px, 7vw, 108px);
+      line-height: 0.88;
+      text-transform: uppercase;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+    }
+
+    .hero-headline .line-white { color: var(--white); }
+    .hero-headline .line-accent { color: var(--accent); }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 380px;
+      letter-spacing: 0.02em;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both;
+    }
+
+    /* Feature pills */
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .pill:hover {
+      border-color: var(--accent-glow);
+      color: var(--accent);
+    }
+
+    .pill svg { flex-shrink: 0; }
+
+    /* CTA group */
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px var(--accent-glow); }
+    .btn-primary:hover::after { transform: translateX(100%); }
+
+    .btn-arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .btn-secondary:hover { color: var(--white); }
+
+    /* Social proof row */
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.72s both;
+    }
+
+    .stars-row { color: var(--accent); font-size: 1rem; letter-spacing: 2px; }
+
+    .proof-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .proof-text strong { color: var(--white); }
+
+    /* ---- RIGHT IMAGE ---- */
+    .hero-image-wrap {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 40px 40px 0;
+    }
+
+    .hero-img-glow {
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,255,0,0.18) 0%, transparent 70%);
+      animation: pulseGlow 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50%       { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-img {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      border-radius: 16px;
+      display: block;
+      animation: floatImg 6s ease-in-out infinite;
+      filter: drop-shadow(0 30px 80px rgba(200,255,0,0.2));
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .hero-img:hover { filter: drop-shadow(0 40px 100px rgba(200,255,0,0.35)); }
+
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0px) rotate(-0.5deg); }
+      50%       { transform: translateY(-18px) rotate(0.5deg); }
+    }
+
+    /* Floating label badge on image */
+    .img-tag {
+      position: absolute;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 1s both;
+    }
+
+    .img-tag-icon { font-size: 1.4rem; }
+
+    .img-tag-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .img-tag-value {
+      font-family: var(--font-cond);
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .img-tag-1 { bottom: 18%; left: -5%; }
+    .img-tag-2 { top: 16%; right: -2%; }
+
+    /* =============================================
+       STATS BAR
+    ============================================= */
+    .stats-bar {
+      background: var(--mid);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    .stat-item {
+      padding: 36px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(200,255,0,0.04); }
+
+    .stat-number {
+      font-family: var(--font-cond);
+      font-size: clamp(28px, 3.5vw, 52px);
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* =============================================
+       FEATURES SECTION
+    ============================================= */
+    .features-section {
+      padding: 100px 60px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features-section::before {
+      content: 'FEATURES';
+      position: absolute;
+      top: 40px;
+      right: -20px;
+      font-family: var(--font-cond);
+      font-size: clamp(80px, 12vw, 200px);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .section-label-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-label-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .features-title {
+      font-family: var(--font-cond);
+      font-size: clamp(36px, 5.5vw, 80px);
+      font-weight: 900;
+      line-height: 0.92;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+    }
+
+    .features-title .outline {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--accent);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      background: rgba(200,255,0,0.05);
+      border-color: rgba(200,255,0,0.25);
+      transform: translateY(-6px);
+      z-index: 2;
+    }
+
+    .feature-icon-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,255,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover .feature-icon-wrap {
+      background: rgba(200,255,0,0.2);
+      box-shadow: 0 0 20px rgba(200,255,0,0.2);
+    }
+
+    .feature-title {
+      font-family: var(--font-cond);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .reviews-section {
+      padding: 100px 60px;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+
+    .reviews-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .reviews-title {
+      font-family: var(--font-cond);
+      font-size: clamp(32px, 5vw, 72px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.92;
+    }
+
+    .reviews-title .accent { color: var(--accent); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      border-color: rgba(200,255,0,0.2);
+      transform: translateY(-4px);
+    }
+
+    .review-stars { color: var(--accent); font-size: 0.9rem; letter-spacing: 3px; }
+
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .review-author {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verified-badge {
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,255,0,0.25);
+      color: var(--accent);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+    }
+
+    /* =============================================
+       FINAL CTA BANNER
+    ============================================= */
+    .cta-banner {
+      position: relative;
+      padding: 120px 60px;
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 50%, rgba(200,255,0,0.1) 0%, transparent 70%),
+        var(--mid);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .cta-banner::before {
+      content: '#1';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-cond);
+      font-size: clamp(160px, 30vw, 400px);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .cta-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .cta-headline {
+      font-family: var(--font-cond);
+      font-size: clamp(40px, 7vw, 110px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-headline .accent { color: var(--accent); }
+
+    .cta-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-primary-lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--accent);
+      color: var(--black);
+      font-family: var(--font-cond);
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 22px 56px;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .btn-primary-lg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-primary-lg:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 24px 60px var(--accent-glow);
+    }
+
+    .btn-primary-lg:hover::after { transform: translateX(100%); }
+
+    .cta-guarantee {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-cond);
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo em { color: var(--accent); font-style: normal; }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .footer-link {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover { color: var(--accent); }
+
+    /* =============================================
+       ANIMATIONS
+    ============================================= */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll reveal via class */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid  { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 14px 20px; }
+      .logo  { font-size: 1.1rem; }
+      .hero  { grid-template-columns: 1fr; min-height: auto; }
+
+      .hero-copy {
+        padding: 60px 24px 30px;
+        order: 2;
+        gap: 22px;
+      }
+
+      .hero-image-wrap {
+        padding: 30px 24px 0;
+        order: 1;
+      }
+
+      .hero-img { max-width: 100%; }
+      .img-tag-1 { left: 0; bottom: 10%; }
+      .img-tag-2 { right: 0; top: 8%; }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+
+      .features-section,
+      .reviews-section,
+      .cta-banner { padding: 70px 24px; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .reviews-grid  { grid-template-columns: 1fr; }
+
+      .reviews-header { flex-direction: column; align-items: flex-start; }
+
+      footer {
+        padding: 28px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .trust-bar span:nth-child(n+4) { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 52px; }
+      .cta-group { flex-direction: column; align-items: flex-start; }
+      .btn-primary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" role="banner">
+    🚚 FREE WORLDWIDE SHIPPING
+    <span>·</span>
+    ⭐ OVER 10,000+ HAPPY CUSTOMERS
+    <span>·</span>
+    🔒 30-DAY MONEY-BACK GUARANTEE
+    <span>·</span>
+    ⚡ LIMITED STOCK — ORDER NOW
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <a href="https://dailyscroll.store" class="logo" id="header-logo">DAILY<em>SCROLL</em></a>
+    <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+       class="header-cta" id="header-shop-btn" target="_blank" rel="noopener">
+      SHOP NOW →
+    </a>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero" aria-labelledby="hero-heading">
+    <!-- Left: copy -->
+    <div class="hero-copy">
+      <div class="badge-bestseller" aria-label="Best Seller badge">BEST SELLER</div>
+
+      <h1 class="hero-headline" id="hero-heading">
+        <span class="line-white">CLEAN</span><br/>
+        <span class="line-accent">SMARTER.</span><br/>
+        <span class="line-white">NOT</span><br/>
+        <span class="line-white">HARDER.</span>
+      </h1>
+
+      <p class="hero-sub">
+        The PUFTEM Electric Spin Scrubber is here. Cordless, powerful, and built with a battery level display so you're never caught mid-clean. Say goodbye to elbow grease.
+      </p>
+
+      <!-- Feature pills -->
+      <div class="feature-pills" role="list">
+        <div class="pill" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          2 Speed Modes
+        </div>
+        <div class="pill" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 13v-2"/></svg>
+          Battery Display
+        </div>
+        <div class="pill" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          IPX6 Waterproof
+        </div>
+        <div class="pill" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          6 Brush Heads
+        </div>
+        <div class="pill" role="listitem">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Cordless Freedom
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-group">
+        <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+           class="btn-primary" id="hero-shop-btn" target="_blank" rel="noopener">
+          SHOP NOW <span class="btn-arrow">→</span>
+        </a>
+        <a href="#features" class="btn-secondary" id="hero-features-btn">
+          SEE FEATURES ↓
+        </a>
+      </div>
+
+      <!-- Social proof -->
+      <div class="social-proof">
+        <div class="stars-row" aria-label="5 stars">★★★★★</div>
+        <p class="proof-text"><strong>4.9/5</strong> from over 10,000+ verified buyers</p>
+      </div>
+    </div>
+
+    <!-- Right: Product image -->
+    <div class="hero-image-wrap">
+      <div class="hero-img-glow" aria-hidden="true"></div>
+
+      <!-- Floating tag 1 -->
+      <div class="img-tag img-tag-1" aria-hidden="true">
+        <span class="img-tag-icon">🔋</span>
+        <div>
+          <div class="img-tag-label">Battery</div>
+          <div class="img-tag-value">DISPLAY</div>
+        </div>
+      </div>
+
+      <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+         target="_blank" rel="noopener" id="hero-img-link" aria-label="Shop the Electric Spin Scrubber">
+        <img
+          src="https://dailyscroll.store/cdn/shop/files/Image_fxab6c_c8ef9c.png?v=1752941742"
+          alt="PUFTEM Electric Spin Cordless Shower Scrubber with 6 replaceable brush heads"
+          class="hero-img"
+          loading="eager"
+          onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div style=\'width:100%;max-width:580px;aspect-ratio:1/1;background:rgba(200,255,0,0.05);border:2px solid rgba(200,255,0,0.2);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;\'><div style=\'font-size:5rem;\'>🧽</div><div style=\'font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:0.1em;color:rgba(200,255,0,0.9);\'>ELECTRIC SPIN SCRUBBER</div></div>'"
+        />
+      </a>
+
+      <!-- Floating tag 2 -->
+      <div class="img-tag img-tag-2" aria-hidden="true">
+        <span class="img-tag-icon">⚡</span>
+        <div>
+          <div class="img-tag-label">Speed</div>
+          <div class="img-tag-value">2 MODES</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar" role="region" aria-label="Product statistics">
+    <div class="stat-item reveal">
+      <div class="stat-number">10K+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Brush Heads Incl.</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">4.9★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">30</div>
+      <div class="stat-label">Day Money Back</div>
+    </div>
+  </div>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section" id="features" aria-labelledby="features-title">
+    <div class="section-label-tag">/// WHAT YOU GET</div>
+    <h2 class="features-title" id="features-title">
+      BUILT FOR<br/>
+      <span class="outline">REAL CLEAN.</span>
+    </h2>
+
+    <div class="features-grid">
+      <!-- Card 1 -->
+      <div class="feature-card reveal" id="feature-1">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="feature-title">2-Speed Modes</div>
+        <p class="feature-desc">Switch between a gentle daily clean and a high-powered deep-scrub mode with a single button press. Built for every surface.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="feature-card reveal" id="feature-2">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 13v-2"/></svg>
+        </div>
+        <div class="feature-title">Battery Level Display</div>
+        <p class="feature-desc">A first-of-its-kind LED battery indicator lets you know exactly how much power is left — no surprises mid-task.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="feature-card reveal" id="feature-3">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feature-title">IPX6 Waterproof</div>
+        <p class="feature-desc">Designed to handle full water exposure. Use it in the shower, sink, or bathtub without worry — it's built to get wet.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="feature-card reveal" id="feature-4">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <div class="feature-title">6 Replaceable Heads</div>
+        <p class="feature-desc">Comes with 6 purpose-built brush heads — stiff bristles for grout, soft pads for delicate surfaces, and more.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="feature-card reveal" id="feature-5">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="feature-title">Cordless Freedom</div>
+        <p class="feature-desc">No cords, no limits. The rechargeable battery means you can clean anywhere — under sinks, behind toilets, on tile walls.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="feature-card reveal" id="feature-6">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="feature-title">Time & Effort Saving</div>
+        <p class="feature-desc">Cuts cleaning time by up to 60%. The spin motor does all the hard work so you don't have to use muscle power.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="reviews-section" id="reviews" aria-labelledby="reviews-title">
+    <div class="reviews-header">
+      <div>
+        <div class="section-label-tag">/// REAL REVIEWS</div>
+        <h2 class="reviews-title" id="reviews-title">
+          DON'T JUST<br/><span class="accent">TAKE OUR WORD.</span>
+        </h2>
+      </div>
+      <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+         class="btn-primary" id="reviews-shop-btn" target="_blank" rel="noopener">
+        GET YOURS NOW →
+      </a>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal" id="review-1">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"This scrubber is an absolute game changer. My shower tiles look brand new in under 5 minutes. The battery display is genius — I always know when to charge it."</p>
+        <div class="review-author">
+          — Sarah M.
+          <span class="verified-badge">✓ VERIFIED</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal" id="review-2">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"I was skeptical but wow. The grout brush head removed years of built-up grime in minutes. My whole bathroom looks professionally cleaned. Worth every penny."</p>
+        <div class="review-author">
+          — James T.
+          <span class="verified-badge">✓ VERIFIED</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal" id="review-3">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"The 2-speed mode is perfect. I use the low setting on my delicate sink and the high setting for tiles. The 6 brush heads cover every surface. Couldn't ask for more."</p>
+        <div class="review-author">
+          — Priya K.
+          <span class="verified-badge">✓ VERIFIED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <section class="cta-banner" id="cta" aria-labelledby="cta-heading">
+    <div class="cta-label">/// #1 BEST SELLER — KITCHEN ESSENTIALS</div>
+
+    <h2 class="cta-headline" id="cta-heading">
+      READY TO CLEAN<br/><span class="accent">SMARTER?</span>
+    </h2>
+
+    <p class="cta-sub">
+      Join 10,000+ customers who've upgraded their cleaning routine. Free worldwide shipping. 30-day money-back guarantee. No questions asked.
+    </p>
+
+    <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+       class="btn-primary-lg" id="cta-main-btn" target="_blank" rel="noopener">
+      SHOP NOW — GET YOURS TODAY <span style="font-size:1.2rem;">→</span>
+    </a>
+
+    <p class="cta-guarantee">🔒 Secure checkout &nbsp;·&nbsp; 🚚 Free shipping &nbsp;·&nbsp; ⭐ 4.9 / 5 Stars</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="https://dailyscroll.store" class="footer-logo" id="footer-logo">DAILY<em>SCROLL</em></a>
+    <span class="footer-copy">© 2025 DailyScroll. All rights reserved.</span>
+    <a href="https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads"
+       class="footer-link" id="footer-product-link" target="_blank" rel="noopener">
+      VIEW PRODUCT PAGE →
+    </a>
+  </footer>
+
+  <!-- SCROLL REVEAL SCRIPT -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Intersection Observer for scroll reveal
+      const revealEls = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      revealEls.forEach((el) => io.observe(el));
+
+      // Stagger children in grids
+      document.querySelectorAll('.features-grid, .reviews-grid, .stats-bar').forEach((grid) => {
+        Array.from(grid.children).forEach((child, i) => {
+          child.style.transitionDelay = `${i * 0.08}s`;
+        });
+      });
+
+      // Animated count-up for stats
+      function animateCount(el, target, suffix) {
+        const duration = 1800;
+        const start = performance.now();
+        const isFloat = target % 1 !== 0;
+
+        function tick(now) {
+          const elapsed = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - elapsed, 4);
+          const current = isFloat ? (ease * target).toFixed(1) : Math.round(ease * target);
+          el.textContent = current + suffix;
+          if (elapsed < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      const statIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target.querySelector('.stat-number');
+              const raw = el.textContent.trim();
+              const match = raw.match(/([\d.]+)([^\d.]*)/);
+              if (match) {
+                animateCount(el, parseFloat(match[1]), match[2]);
+              }
+              statIo.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll('.stat-item').forEach((el) => statIo.observe(el));
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!-- ACCOUNT PAGE -->
+<style>
+  .account-page { padding: 150px 5% 100px; max-width: 1000px; margin: 0 auto; min-height: 80vh; font-family: var(--font); }
+  .account-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  .account-title { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.3); }
+  .logout-link { color: var(--text-muted); text-decoration: none; font-weight: 700; letter-spacing: 0.1em; font-size: 0.8rem; transition: color 0.3s; margin-bottom: 0.5rem; }
+  .logout-link:hover { color: var(--accent); }
+  .account-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+  @media (max-width: 768px) { .account-grid { grid-template-columns: 1fr; } }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+  .order-history p { color: var(--text-muted); font-size: 1rem; }
+  .account-details p { color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .btn-outline { display: inline-block; border: 1px solid var(--border); padding: 12px 24px; color: var(--text-primary); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; margin-top: 1.5rem; transition: all 0.3s; text-transform: uppercase; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--black); background: var(--accent); }
+</style>
+
+<div class="account-page">
+  <div class="account-header">
+    <h1 class="account-title">MY ACCOUNT</h1>
+    <a href="{{ routes.account_logout_url }}" class="logout-link">LOG OUT</a>
+  </div>
+  
+  <div class="account-grid">
+    <div class="order-history">
+      <h2 class="section-title">ORDER HISTORY</h2>
+      {% if customer.orders.size != 0 %}
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; text-align: left; border-collapse: collapse; min-width: 500px;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border);">
+                <th style="padding-bottom: 15px; color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;">ORDER</th>
+                <th style="padding-bottom: 15px; color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;">DATE</th>
+                <th style="padding-bottom: 15px; color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;">PAYMENT STATUS</th>
+                <th style="padding-bottom: 15px; color: var(--text-dim); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-align: right;">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                  <td style="padding: 20px 0;"><a href="{{ order.customer_url }}" style="color: #fff; text-decoration: none; font-weight: 700; border-bottom: 1px solid var(--accent);">{{ order.name }}</a></td>
+                  <td style="padding: 20px 0; color: var(--text-muted);">{{ order.created_at | date: "%b %d, %Y" }}</td>
+                  <td style="padding: 20px 0; color: var(--text-muted);">{{ order.financial_status_label }}</td>
+                  <td style="padding: 20px 0; text-align: right; color: #fff; font-weight: 700;">{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p>You haven't placed any orders yet.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn-outline" style="margin-top: 1rem;">SHOP NOW</a>
+      {% endif %}
+    </div>
+    
+    <div class="account-details">
+      <h2 class="section-title">ACCOUNT DETAILS</h2>
+      <p style="color: var(--text-primary); font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase;">{{ customer.name }}</p>
+      
+      {% if customer.default_address %}
+        <p>{{ customer.default_address.address1 }}</p>
+        {% if customer.default_address.address2 != "" %}
+          <p>{{ customer.default_address.address2 }}</p>
+        {% endif %}
+        <p>{{ customer.default_address.city }}, {% if customer.default_address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
+        <p>{{ customer.default_address.zip }}</p>
+        <p>{{ customer.default_address.phone }}</p>
+      {% else %}
+        <p>No default address saved.</p>
+      {% endif %}
+      
+      <a href="{{ routes.account_addresses_url }}" class="btn-outline">VIEW ADDRESSES ({{ customer.addresses_count }})</a>
+    </div>
+  </div>
+</div>

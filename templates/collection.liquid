@@ -1,0 +1,166 @@
+<!-- COLLECTION SECTION -->
+<section class="new-drop-section" style="padding-top: 150px; min-height: 80vh;">
+  <div class="section-label">— /// {{ collection.title | upcase }}</div>
+  <h2 class="section-big-title">{{ collection.title | escape }}</h2>
+  
+  {% if collection.description != blank %}
+    <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 1rem auto; font-family: 'Barlow', sans-serif;">
+      {{ collection.description }}
+    </p>
+  {% endif %}
+
+  <style>
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem auto 4rem auto;
+      max-width: 1000px;
+      padding: 0 5%;
+    }
+    .category-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    .category-btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+    .category-btn.active {
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+    }
+  </style>
+
+  <div class="category-buttons">
+    <a href="/collections/all" class="category-btn {% if collection.handle == 'all' %}active{% endif %}">ALL</a>
+    {% for col in collections %}
+      {% if col.handle != 'all' and col.handle != 'frontpage' %}
+        <a href="{{ col.url }}" class="category-btn {% if collection.handle == col.handle %}active{% endif %}">{{ col.title }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if settings.show_ad_shop and settings.ad_image != blank %}
+    {% assign ad_default_link = 'https://dailyscroll.store/collections/kitchen-essentials/products/puftem-electric-spin-cordless-shower-scrubber-with-battery-level-display-2-speeds-electric-scrubber-for-cleaning-with-6-replaceable-heads' %}
+    <div class="ad-carousel-section" style="padding: 20px 5%;">
+
+      <div class="ad-marquee-wrap">
+        <div class="ad-marquee-track">
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+          <span>/// BEST SELLING</span><span>/// SHOP THE DROP NOW</span><span>/// LIMITED TIME OFFER</span>
+        </div>
+      </div>
+
+      <div class="ad-carousel" id="adCarouselShop">
+        <div class="ad-carousel-track" id="adTrackShop">
+          <a href="{% if settings.ad_link != blank %}{{ settings.ad_link }}{% else %}{{ ad_default_link }}{% endif %}" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="{{ settings.ad_image | img_url: 'master' }}" alt="Ad 1">
+          </a>
+          {% if settings.ad_image_2 != blank %}
+          <a href="{% if settings.ad_link_2 != blank %}{{ settings.ad_link_2 }}{% else %}{{ ad_default_link }}{% endif %}" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="{{ settings.ad_image_2 | img_url: 'master' }}" alt="Ad 2">
+          </a>
+          {% endif %}
+          {% if settings.ad_image_3 != blank %}
+          <a href="{% if settings.ad_link_3 != blank %}{{ settings.ad_link_3 }}{% else %}{{ ad_default_link }}{% endif %}" class="ad-slide">
+            <div class="ad-slide-badge">★ BEST SELLING</div>
+            <img src="{{ settings.ad_image_3 | img_url: 'master' }}" alt="Ad 3">
+          </a>
+          {% endif %}
+        </div>
+        <div class="ad-dots" id="adDotsShop"></div>
+        <button class="ad-arrow ad-arrow-prev" onclick="adShopMove(-1)" aria-label="Previous">&#8249;</button>
+        <button class="ad-arrow ad-arrow-next" onclick="adShopMove(1)"  aria-label="Next">&#8250;</button>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        var track = document.getElementById('adTrackShop');
+        var dotsEl = document.getElementById('adDotsShop');
+        var slides = track ? track.querySelectorAll('.ad-slide') : [];
+        var total = slides.length, current = 0, timer;
+        if (total <= 1) { document.querySelectorAll('#adCarouselShop .ad-arrow').forEach(function(a){ a.style.display='none'; }); }
+        for (var i = 0; i < total; i++) {
+          var dot = document.createElement('button');
+          dot.className = 'ad-dot' + (i === 0 ? ' active' : '');
+          dot.onclick = (function(idx){ return function(){ goToShop(idx); resetShop(); }; })(i);
+          dotsEl.appendChild(dot);
+        }
+        function goToShop(idx) {
+          current = (idx + total) % total;
+          track.style.transform = 'translateX(-' + (current * 100) + '%)';
+          dotsEl.querySelectorAll('.ad-dot').forEach(function(d,i){ d.classList.toggle('active', i===current); });
+        }
+        function resetShop() { clearInterval(timer); timer = setInterval(function(){ goToShop(current+1); }, 3000); }
+        window.adShopMove = function(dir){ goToShop(current+dir); resetShop(); };
+        resetShop();
+      })();
+    </script>
+  {% endif %}
+
+  <div class="products-grid">
+    {% if collection.products.size > 0 %}
+      {% paginate collection.products by 12 %}
+        {% for product in collection.products %}
+          <div class="product-card">
+            <a href="{{ product.url | within: collection }}" class="stretched-link" aria-label="{{ product.title | escape }}"></a>
+            <div class="product-img-wrap">
+              <a href="{{ product.url | within: collection }}">
+                <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title | escape }}" class="product-img" />
+              </a>
+              <div class="product-overlay">
+                <a href="{{ product.url | within: collection }}"><span>VIEW OBJECT</span></a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <div>
+                  <a href="{{ product.url | within: collection }}" style="text-decoration:none; color:inherit;">
+                    <div class="product-name">{{ product.title }}</div>
+                  </a>
+                </div>
+                <div class="product-price">{{ product.price | money }}</div>
+              </div>
+              <div class="product-actions">
+                <form method="post" action="/cart/add">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                  <button type="submit" class="add-to-bag">ADD TO BAG</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        {% if paginate.pages > 1 %}
+          <div class="pagination" style="grid-column: 1 / -1; text-align: center; padding-top: 2rem;">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <p style="grid-column: 1 / -1; text-align: center; color: #666; font-family: 'Barlow', sans-serif;">
+        No products found in this collection.
+      </p>
+    {% endif %}
+  </div>
+</section>

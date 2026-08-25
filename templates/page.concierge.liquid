@@ -1,0 +1,48 @@
+<!-- CONCIERGE PAGE -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #888;
+    line-height: 1;
+    line-height: 1;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  .custom-page-content p {
+    margin-bottom: 1.5rem;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <div class="section-label">— /// WE'RE HERE TO HELP</div>
+  <h1 class="custom-page-title">CONCIERGE</h1>
+  <div class="custom-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <h3 style="color:var(--accent); margin-bottom: 1.5rem; font-family:'Barlow Condensed', sans-serif; font-size: 2rem; text-transform: uppercase; font-weight: 800;">CLIENT SERVICES</h3>
+      <p>Need assistance with an object, an order, or just want to talk design? Our concierge team is available to assist you.</p>
+      <p>We aim to respond to all inquiries within 24 hours.</p>
+      <div style="margin-top: 3rem; padding: 2rem; border: 1px solid var(--border); text-align: center;">
+        <p style="margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;">Email Us</p>
+        <a href="mailto:dailyscrollstore@gmail.com" style="color:var(--text-primary); font-size: 1.5rem; font-family: 'Barlow Condensed', sans-serif; text-decoration:none; font-weight: 800; letter-spacing: 0.05em; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">DAILYSCROLLSTORE@GMAIL.COM</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

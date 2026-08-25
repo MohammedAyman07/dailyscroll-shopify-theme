@@ -1,0 +1,1613 @@
+<!-- PRODUCT DETAILS SECTION -->
+<style>
+  .amz-product-wrapper {
+    padding: 120px 5% 100px;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 35% 40% 20%;
+    justify-content: space-between;
+    gap: 2rem;
+    color: var(--text-primary, #fff);
+    font-family: 'Barlow', sans-serif;
+  }
+  
+  /* --- LEFT COLUMN: MEDIA --- */
+  .amz-media-col {
+    display: flex;
+    gap: 1rem;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+  }
+  .amz-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60px;
+    flex-shrink: 0;
+  }
+  .amz-thumb {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    background: #111;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .amz-thumb:hover, .amz-thumb.active {
+    border-color: #e5ff00;
+  }
+  .amz-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .amz-main-image {
+    flex-grow: 1;
+    background: #0d0d0d;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  .amz-main-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  }
+
+  /* --- MIDDLE COLUMN: INFO --- */
+  .amz-info-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .amz-vendor {
+    color: #e5ff00;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .amz-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .amz-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #e5ff00;
+  }
+  .amz-rating span {
+    color: #aaa;
+  }
+  .amz-price-block {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .amz-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .amz-sale-price {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .amz-compare-price {
+    text-decoration: line-through;
+    color: #666;
+    font-size: 1.2rem;
+  }
+  .amz-taxes {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 5px;
+  }
+  
+  .amz-variants-wrapper {
+    margin-bottom: 2rem;
+  }
+  .amz-option-name {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ccc;
+  }
+  .amz-option-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .amz-variant-pill {
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    background: #111;
+    color: #fff;
+    transition: all 0.2s;
+  }
+  .amz-variant-pill:hover {
+    background: #222;
+  }
+  .amz-variant-pill.selected {
+    border-color: #e5ff00;
+    background: rgba(229,255,0,0.1);
+    color: #e5ff00;
+  }
+
+  .amz-about-item {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+  }
+  .amz-about-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  .amz-about-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  .amz-about-content ul {
+    padding-left: 20px;
+  }
+  .amz-about-content li {
+    margin-bottom: 8px;
+  }
+  .amz-about-content img,
+  .amz-about-content video,
+  .amz-about-content iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+    margin: 40px 0 !important; /* Increased gap between images */
+    display: block;
+  }
+
+  /* --- RIGHT COLUMN: BUY BOX --- */
+  .amz-buy-box {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: #0d0d0d;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    min-width: 250px;
+  }
+  .amz-buy-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .amz-delivery {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+  }
+  .amz-delivery strong {
+    color: #fff;
+  }
+  .amz-stock {
+    color: #e5ff00;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .amz-qty-row {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .amz-qty-select {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    cursor: pointer;
+    flex-grow: 1;
+  }
+  
+  .amz-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 40px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    margin-bottom: 10px;
+    border: none;
+  }
+  .amz-btn-add {
+    background: #e5ff00;
+    color: #000;
+  }
+  .amz-btn-add:hover {
+    background: #c8e600;
+  }
+  .amz-btn-buy {
+    background: #fff;
+    color: #000;
+  }
+  .amz-btn-buy:hover {
+    background: #e6e6e6;
+  }
+  
+  .amz-seller-info {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #888;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 15px;
+  }
+  .amz-seller-info span.value {
+    color: #ddd;
+  }
+  
+  /* --- TRUST & SCARCITY --- */
+  .amz-scarcity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+    padding: 8px 12px;
+    background: rgba(229,255,0,0.05);
+    border: 1px solid rgba(229,255,0,0.2);
+    border-radius: 4px;
+  }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 1);
+    animation: pulse-red 2s infinite;
+  }
+  @keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 51, 51, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 51, 0); }
+  }
+  .amz-scarcity strong { color: #fff; }
+
+  .amz-trust-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .amz-trust-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.15em;
+    color: #aaa;
+    margin-bottom: 12px;
+  }
+  .amz-trust-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 15px;
+  }
+  .amz-trust-pills span {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    color: #fff;
+    background: #1a1a1a;
+  }
+  .amz-trust-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #e5ff00;
+  }
+
+  @media (max-width: 1024px) {
+    .amz-product-wrapper {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding-top: 100px;
+    }
+    .amz-media-col, .amz-buy-box {
+      position: static;
+    }
+    .amz-media-col {
+      flex-direction: column-reverse;
+    }
+    .amz-thumbnails {
+      flex-direction: row;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+
+  /* ===== BUNDLE & SAVE ===== */
+  .bundle-wrap {
+    background: #111;
+    border: 1px solid rgba(229,255,0,0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .bundle-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(229,255,0,0.08);
+    padding: 10px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(229,255,0,0.15);
+  }
+  .bundle-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .bundle-tier {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+    min-height: 60px;
+  }
+  .bundle-tier:last-child { border-bottom: none; }
+  .bundle-tier:hover { background: rgba(255,255,255,0.03); }
+  .bundle-tier--highlight {
+    background: rgba(229,255,0,0.05);
+    border-left: 3px solid var(--accent);
+  }
+  .bundle-tier--highlight.active,
+  .bundle-tier--highlight {
+    background: rgba(229,255,0,0.07);
+  }
+  .bundle-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .bundle-radio.selected {
+    border-color: var(--accent);
+  }
+  .bundle-radio.selected::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .bundle-tier-info {
+    flex: 1;
+  }
+  .bundle-tier-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 3px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .bundle-popular-tag {
+    background: var(--accent);
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+  }
+  .bundle-tier-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: nowrap;
+  }
+  .bundle-tier-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .bundle-tier-each {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    white-space: nowrap;
+  }
+  .bundle-tier-saving {
+    font-size: 0.75rem;
+    color: #4caf50;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .bundle-tier-badge {
+    background: rgba(229,255,0,0.12);
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid rgba(229,255,0,0.25);
+  }
+  .bundle-tier-badge--gold {
+    background: rgba(255,200,0,0.1);
+    color: #ffc800;
+    border-color: rgba(255,200,0,0.3);
+  }
+  .bundle-total-display {
+    background: rgba(229,255,0,0.06);
+    border: 1px solid rgba(229,255,0,0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .bundle-total-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .bundle-total-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .bundle-total-original {
+    text-decoration: line-through;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+    margin-left: 8px;
+  }
+  .bundle-discount-code-note {
+    font-size: 0.78rem;
+    color: #4caf50;
+    text-align: center;
+    padding: 6px 0 10px;
+    font-weight: 600;
+  }
+</style>
+
+<form method="post" action="/cart/add" id="addToCartForm" class="amz-product-wrapper">
+  
+  <!-- LEFT: MEDIA -->
+  <div class="amz-media-col">
+    <div class="amz-thumbnails">
+      {% if product.images.size > 0 %}
+        {% for image in product.images limit: 6 %}
+          <div class="amz-thumb {% if forloop.first %}active{% endif %}" onclick="changeMainImage('{{ image | img_url: '1000x' }}', this)">
+            <img src="{{ image | img_url: '100x' }}" alt="{{ product.title | escape }} thumbnail">
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="amz-thumb active">
+          <img src="{{ product.featured_image | img_url: '100x' }}" alt="{{ product.title | escape }} thumbnail">
+        </div>
+      {% endif %}
+    </div>
+    <div class="amz-main-image" onclick="openLightbox(this.querySelector('img').src)" title="Click to see full view">
+      <img id="mainProductImage" src="{{ product.featured_image | img_url: '1000x' }}" alt="{{ product.title | escape }}">
+      <div class="amz-fullview-hint">🔍 Click to see full view</div>
+    </div>
+  </div>
+
+  <!-- MIDDLE: INFO -->
+  <div class="amz-info-col">
+    <div class="amz-vendor">DailyScroll</div>
+    <h1 class="amz-title">{{ product.title }}</h1>
+    
+    <div class="amz-rating">
+      <!-- Judge.me Star Rating Badge -->
+      <a class="jdgm-summary-stars-rating jdgm-widget" href="#judgeme_product_reviews"
+         data-id="{{ product.id }}"
+         data-product-title="{{ product.title | escape }}">
+        {{ product.metafields.judgeme.badge }}
+      </a>
+    </div>
+
+    <div class="amz-price-block">
+      <div class="amz-price-row">
+        <span class="amz-sale-price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="amz-compare-price">M.R.P: {{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+      <div class="amz-taxes">Inclusive of all taxes</div>
+      
+      {% if product.compare_at_price > product.price %}
+        {% assign save_money = product.compare_at_price | minus: product.price %}
+        {% assign save_percent = save_money | times: 100.0 | divided_by: product.compare_at_price | round %}
+        <div class="prd-offer-box">
+          <div class="prd-offer-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            LIMITED TIME OFFER
+          </div>
+          <div class="prd-offer-text">
+            You save <span class="prd-offer-highlight">{{ save_money | money }} ({{ save_percent }}%)</span> if you order today.
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+
+    <!-- HIDDEN SELECT FOR SHOPIFY -->
+    <select name="id" id="productSelect" style="display:none;">
+      {% for variant in product.variants %}
+        <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
+          {{ variant.title }}
+        </option>
+      {% endfor %}
+    </select>
+
+    {% if product.options.size > 0 and product.variants[0].title != 'Default Title' %}
+      <div class="amz-variants-wrapper">
+        {% for option in product.options_with_values %}
+          <div class="amz-option-group">
+            <div class="amz-option-name">{{ option.name }}: <span id="selected-{{ option.name | handleize }}" style="color:#fff;">{{ option.selected_value }}</span></div>
+            <div class="amz-option-values">
+              {% for value in option.values %}
+                <div class="amz-variant-pill {% if option.selected_value == value %}selected{% endif %}" 
+                     onclick="selectVariantOption(this, '{{ option.name | handleize }}')">
+                  {{ value }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="amz-about-item">
+      <div class="amz-about-title">About this item</div>
+      <div class="amz-about-content">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: BUY BOX -->
+  <div class="amz-buy-box">
+    <div class="amz-buy-price">{{ product.price | money }}</div>
+    
+    <!-- HIGH URGENCY ELEMENTS -->
+    <div class="urgency-wrapper">
+      
+      <div class="urgency-row">
+        <div class="pulse-ring"><div class="pulse-dot"></div></div>
+        <div class="urgency-text"><strong id="viewerCount">{{ product.id | modulo: 38 | plus: 24 }}</strong> people viewing this right now</div>
+      </div>
+      
+      {% if product.available %}
+        <div class="urgency-row" style="margin-top: 14px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff3333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <div class="urgency-text">
+            {% assign rand_stock = product.id | modulo: 11 | plus: 4 %}
+            <span style="color:#ff3333; font-weight:800; text-transform:uppercase;">High Demand</span> &mdash; Only <strong id="stockCount" style="color:#fff;">{{ rand_stock }}</strong> left in stock
+          </div>
+        </div>
+        <div class="urgency-progress">
+          <div class="urgency-progress-bar" style="width: {{ product.id | modulo: 40 | plus: 15 }}%;"></div>
+        </div>
+      {% else %}
+        <div class="amz-stock" style="margin-top: 14px;"><span style="color:#ff3333; font-weight:800;">SOLD OUT</span></div>
+      {% endif %}
+
+      <div class="urgency-timer-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="urgency-timer-text">
+          SALE ENDS IN <strong id="countdownTimer" style="color:var(--accent); font-size:1.1em; letter-spacing:0.05em; margin-left:6px;">04:29:59</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BUNDLE & SAVE SECTION -->
+    <div class="bundle-wrap" id="bundleWrap">
+      <div class="bundle-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        BUNDLE &amp; SAVE — BEST VALUE
+      </div>
+      <div class="bundle-tiers">
+
+        <!-- TIER 1: Buy 1 -->
+        <div class="bundle-tier" id="tier1" onclick="selectBundleTier(1)">
+          <div class="bundle-radio" id="radio1"></div>
+          <div class="bundle-tier-info">
+            <div class="bundle-tier-label">Buy <strong>1</strong></div>
+            <div class="bundle-tier-price-row">
+              <span class="bundle-tier-price" id="price1">{{ product.price | money }}</span>
+              <span class="bundle-tier-each">/ each</span>
+            </div>
+          </div>
+          <div class="bundle-tier-badge" style="opacity:0;">—</div>
+        </div>
+
+        <!-- TIER 2: Buy 2 -->
+        <div class="bundle-tier bundle-tier--highlight" id="tier2" onclick="selectBundleTier(2)">
+          <div class="bundle-radio selected" id="radio2"></div>
+          <div class="bundle-tier-info">
+            <div class="bundle-tier-label">Buy <strong>2</strong> <span class="bundle-popular-tag">MOST POPULAR</span></div>
+            <div class="bundle-tier-price-row">
+              <span class="bundle-tier-price" id="price2">{{ product.price | times: 2 | times: 0.85 | money }}</span>
+              <span class="bundle-tier-each">/ for both</span>
+            </div>
+            <div class="bundle-tier-saving" id="saving2"></div>
+          </div>
+          <div class="bundle-tier-badge">SAVE 15%</div>
+        </div>
+
+        <!-- TIER 3: Buy 3 -->
+        <div class="bundle-tier" id="tier3" onclick="selectBundleTier(3)">
+          <div class="bundle-radio" id="radio3"></div>
+          <div class="bundle-tier-info">
+            <div class="bundle-tier-label">Buy <strong>3</strong></div>
+            <div class="bundle-tier-price-row">
+              <span class="bundle-tier-price" id="price3">{{ product.price | times: 3 | times: 0.75 | money }}</span>
+              <span class="bundle-tier-each">/ for all 3</span>
+            </div>
+            <div class="bundle-tier-saving" id="saving3"></div>
+          </div>
+          <div class="bundle-tier-badge bundle-tier-badge--gold">SAVE 25%</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="amz-qty-row" style="display:none;">
+      <label for="quantity" style="font-size:0.9rem; font-weight:700;">Quantity: </label>
+      <select name="quantity" id="quantity" class="amz-qty-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+
+
+
+    <button type="submit" class="amz-btn amz-btn-add" {% unless product.available %}disabled{% endunless %}>
+      Add to Cart
+    </button>
+    
+    <button type="button" class="amz-btn amz-btn-buy" onclick="buyNow()" {% unless product.available %}disabled{% endunless %}>
+      Buy Now
+    </button>
+
+    <button type="button"
+      class="amz-btn amz-btn-wishlist wishlist-heart-btn"
+      id="productWishlistBtn"
+      data-product-id="{{ product.id }}"
+      data-product-title="{{ product.title | escape }}"
+      data-product-url="{{ product.url }}"
+      data-product-img="{{ product.featured_image | img_url: '400x' }}"
+      onclick="toggleWishlist('{{ product.id }}', '{{ product.title | escape }}', '{{ product.url }}', '{{ product.featured_image | img_url: '400x' }}', this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="wishlist-btn-text">Add to Wishlist</span>
+    </button>
+
+    <div class="amz-seller-info">
+      <span>Payment</span> <span class="value" style="color:#e5ff00;">Secure transaction</span>
+      <span>Ships from</span> <span class="value">DailyScroll</span>
+      <span>Sold by</span> <span class="value">DailyScroll</span>
+    </div>
+
+    <div class="amz-trust-section">
+      <div class="amz-trust-title">SECURE & ENCRYPTED CHECKOUT</div>
+      <div class="amz-trust-pills">
+        <span>VISA</span>
+        <span>MASTERCARD</span>
+        <span>AMEX</span>
+        <span>PAYPAL</span>
+        <span>APPLE PAY</span>
+      </div>
+      <div class="amz-trust-guarantee">
+        <span style="font-size: 1.1rem;">🛡️</span> Premium Quality Assured
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+<!-- CATEGORIES PILLS -->
+<div class="category-pills-wrap" style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;">
+  <a href="/collections/all" class="cat-pill active">All</a>
+  {% for c in collections %}
+    {% if c.title != 'Frontpage' and c.title != 'Home page' %}
+      <a href="{{ c.url }}" class="cat-pill">{{ c.title }}</a>
+    {% endif %}
+  {% endfor %}
+  <a href="/collections/all" class="cat-pill">Tech & Gadgets</a>
+  <a href="/collections/all" class="cat-pill">Pets</a>
+  <a href="/collections/all" class="cat-pill">Home Decor</a>
+  <a href="/collections/all" class="cat-pill">Fitness</a>
+  <a href="/collections/all" class="cat-pill">Lifestyle</a>
+</div>
+
+<!-- ============================================================
+  LIGHTBOX OVERLAY
+============================================================ -->
+<div id="imgLightbox" class="amz-lightbox" onclick="closeLightbox()">
+  <button class="amz-lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Full view">
+</div>
+
+<!-- ============================================================
+  SECTION 1: RELATED PRODUCTS (Customers who also viewed)
+============================================================ -->
+<section class="amz-related-section">
+  <div class="amz-related-inner">
+    <div class="amz-related-header">
+      <h2 class="amz-related-title">— /// CUSTOMERS ALSO VIEWED</h2>
+    </div>
+    <div class="amz-related-scroll-wrap">
+      <button class="amz-scroll-btn amz-scroll-left" onclick="scrollRelated('related1', -1)">‹</button>
+      <div class="amz-related-track" id="related1">
+        {% assign col = collections['frontpage'] %}
+        {% if col.products.size > 0 %}
+          {% for rp in col.products limit: 10 %}
+            {% unless rp.id == product.id %}
+              <a href="{{ rp.url }}" class="amz-rp-card">
+                <div class="amz-rp-img-wrap">
+                  <img src="{{ rp.featured_image | img_url: '300x' }}" alt="{{ rp.title | escape }}">
+                </div>
+                <div class="amz-rp-info">
+                  <div class="amz-rp-title">{{ rp.title | truncate: 60 }}</div>
+                  <div class="amz-rp-price">{{ rp.price | money }}</div>
+                </div>
+              </a>
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <button class="amz-scroll-btn amz-scroll-right" onclick="scrollRelated('related1', 1)">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  RECENTLY VIEWED
+============================================================ -->
+<section class="amz-related-section rv-section" id="rvSection">
+  <div class="amz-related-inner">
+    <div class="amz-related-header">
+      <h2 class="amz-related-title">— /// RECENTLY VIEWED</h2>
+    </div>
+    <div class="amz-related-scroll-wrap">
+      <button class="amz-scroll-btn amz-scroll-left" onclick="scrollRelated('rvTrack', -1)">&#8249;</button>
+      <div class="amz-related-track" id="rvTrack"></div>
+      <button class="amz-scroll-btn amz-scroll-right" onclick="scrollRelated('rvTrack', 1)">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+  PRODUCT FAQ SECTION
+============================================================ -->
+<section class="prd-faq-section">
+  <div class="prd-faq-inner">
+    <div class="prd-faq-left">
+      <div class="prd-faq-label">— /// KNOWLEDGE BASE</div>
+      <h2 class="prd-faq-title">GOT<br/><span class="outline-text">QUESTIONS?</span></h2>
+      <p class="prd-faq-sub">Everything you need to know before you order. Can't find your answer? <a href="/pages/contact" style="color:var(--accent); text-decoration:none;">Contact us →</a></p>
+    </div>
+    <div class="prd-faq-list">
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">Is this product genuine and good quality? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">Yes — every product on DAILY/SCROLL is personally reviewed and hand-picked by our team. If it doesn't meet our standard, it simply doesn't make the cut. We stand behind every item we sell.</div>
+      </div>
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">How long does shipping take? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">We offer FREE worldwide shipping on all orders. Delivery typically takes 5–14 business days depending on your location. Once shipped, you will receive a tracking number by email so you can follow your order every step of the way.</div>
+      </div>
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">What if I'm not happy with my order? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">Simple - we are obsessed with the premium quality of every object we ship. We offer a strict 4-day return policy. If you receive a defective or damaged item, contact us within 4 days of delivery and we will make it right.</div>
+      </div>
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">Is it safe to pay on your store? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">Absolutely. Our store is powered by Shopify — the world's most trusted e-commerce platform. All payments are processed through bank-grade SSL encryption. We accept Visa, Mastercard, Amex, PayPal, and Apple Pay. Your data is never stored or shared.</div>
+      </div>
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">You are a new store — can I trust you? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">We appreciate you asking honestly. Yes - we are new and proud of it. We are a small, passionate curation team with everything to prove. That is exactly why we focus heavily on premium quality control, free shipping, and personal customer support. We earn your trust one order at a time.</div>
+      </div>
+      <div class="prd-faq-item" onclick="this.classList.toggle('open')">
+        <div class="prd-faq-q">How do I contact support? <span class="prd-faq-icon">+</span></div>
+        <div class="prd-faq-a">You can reach us via our <a href="/pages/contact" style="color:var(--accent);">Contact page</a>. We respond within 24 hours — real people, real answers. No bots.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 2.5: FULL-WIDTH PRODUCT BANNER IMAGES
+============================================================ -->
+<section class="amz-banner-section">
+  <div class="amz-banner-label">— /// PRODUCT GALLERY</div>
+  <div class="amz-banner-images">
+    {% for image in product.images %}
+      <div class="amz-banner-slide" onclick="openLightbox('{{ image | img_url: '2000x' }}')">
+        <img src="{{ image | img_url: '2000x' }}" alt="{{ product.title | escape }} - image {{ forloop.index }}">
+        <div class="amz-banner-overlay">
+          <span>🔍 Full View</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 3: JUDGE.ME CUSTOMER REVIEWS
+============================================================ -->
+<section class="amz-reviews-section">
+  <div class="amz-reviews-inner">
+
+    <div class="amz-reviews-header-row">
+      <h2 class="amz-reviews-title">/// CUSTOMER REVIEWS</h2>
+    </div>
+
+    <!-- Start of Judge.me code -->
+    {% assign has_legacy = false %}
+    {% if product.metafields.judgeme.widget.size > 20 %}{% assign has_legacy = true %}{% endif %}
+    <div style='clear:both'></div>
+    <div id='judgeme_product_reviews'
+         class='jdgm-widget jdgm-review-widget'
+         data-product-title='{{ product.title | escape }}'
+         data-id='{{ product.id }}'
+         data-product-id='{{ product.id }}'
+         data-widget='review'
+         data-auto-install='false'
+         data-shop-reviews-count='{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}'
+         data-entry-point='review_widget.js'
+         data-entry-key='review-widget/main.js'>
+      {% if has_legacy %}
+        <div class='jdgm-legacy-widget-content' style='display: none;'>{{ product.metafields.judgeme.widget }}</div>
+      {% endif %}
+    </div>
+    {% if product.metafields.judgeme.review_widget_data %}
+      <script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>
+    {% endif %}
+    <!-- End of Judge.me code -->
+
+  </div>
+</section>
+
+<!-- ============================================================
+  SECTION 4: MORE PRODUCTS (Related products)
+============================================================ -->
+<section class="amz-related-section amz-related-section--dark">
+  <div class="amz-related-inner">
+    <div class="amz-related-header">
+      <h2 class="amz-related-title">— /// MORE FROM THE DROP</h2>
+    </div>
+    <div class="amz-related-scroll-wrap">
+      <button class="amz-scroll-btn amz-scroll-left" onclick="scrollRelated('related2', -1)">‹</button>
+      <div class="amz-related-track" id="related2">
+        {% assign col2 = collections['frontpage'] %}
+        {% if col2.products.size > 0 %}
+          {% for rp2 in col2.products limit: 10 %}
+            <a href="{{ rp2.url }}" class="amz-rp-card">
+              <div class="amz-rp-img-wrap">
+                <img src="{{ rp2.featured_image | img_url: '300x' }}" alt="{{ rp2.title | escape }}">
+              </div>
+              <div class="amz-rp-info">
+                <div class="amz-rp-title">{{ rp2.title | truncate: 60 }}</div>
+                <div class="amz-rp-price">{{ rp2.price | money }}</div>
+                <form method="post" action="/cart/add" onclick="event.stopPropagation();">
+                  <input type="hidden" name="id" value="{{ rp2.variants.first.id }}">
+                  <button type="submit" class="amz-rp-atc">Add to Cart</button>
+                </form>
+              </div>
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <button class="amz-scroll-btn amz-scroll-right" onclick="scrollRelated('related2', 1)">›</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- FULL WIDTH BANNER ---- */
+  .amz-banner-section {
+    background: #000;
+    padding: 60px 5% 40px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .amz-banner-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #e5ff00;
+    padding: 0 0 24px;
+    text-transform: uppercase;
+  }
+  .amz-banner-images { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; /* Gap between images */
+  }
+  .amz-banner-slide {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    border-radius: 12px; /* Rounded corners */
+  }
+  .amz-banner-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .amz-banner-slide:hover img { transform: scale(1.02); }
+  .amz-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    transition: background 0.3s;
+  }
+  .amz-banner-overlay span {
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .amz-banner-slide:hover .amz-banner-overlay { background: rgba(0,0,0,0.3); }
+  .amz-banner-slide:hover .amz-banner-overlay span { opacity: 1; }
+
+  /* ---- LIGHTBOX ---- */
+  .amz-fullview-hint {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(229,255,0,0.25);
+    border-radius: 40px;
+    padding: 6px 18px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    pointer-events: none;
+    white-space: nowrap;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .amz-main-image:hover .amz-fullview-hint {
+    opacity: 1;
+    color: #e5ff00;
+    border-color: rgba(229,255,0,0.6);
+    transform: translateX(-50%) translateY(0);
+  }
+  .amz-main-image { cursor: zoom-in; position: relative; }
+
+  .amz-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.96);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .amz-lightbox.open { display: flex; }
+  .amz-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+  }
+  .amz-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 1.4rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.2s;
+  }
+  .amz-lightbox-close:hover { border-color: #e5ff00; color: #e5ff00; }
+
+  /* ---- RELATED SECTIONS ---- */
+  .amz-related-section {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 60px 5%;
+  }
+  .amz-related-section--dark { background: #050505; }
+  .amz-related-inner { max-width: 1600px; margin: 0 auto; }
+  .amz-related-header { margin-bottom: 30px; }
+  .amz-related-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .amz-related-scroll-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .amz-related-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    padding: 4px 0 10px;
+  }
+  .amz-related-track::-webkit-scrollbar { display: none; }
+  .amz-scroll-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.8rem;
+    width: 42px;
+    height: 80px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .amz-scroll-btn:hover { border-color: #e5ff00; color: #e5ff00; background: rgba(229,255,0,0.06); }
+
+  .amz-rp-card {
+    flex-shrink: 0;
+    width: 190px;
+    background: #0f0f0f;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .amz-rp-card:hover { border-color: rgba(229,255,0,0.4); transform: translateY(-4px); }
+  .amz-rp-img-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #111;
+    overflow: hidden;
+  }
+  .amz-rp-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .amz-rp-card:hover .amz-rp-img-wrap img { transform: scale(1.06); }
+  .amz-rp-info { padding: 12px; display: flex; flex-direction: column; flex: 1; }
+  .amz-rp-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ddd;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .amz-rp-rating { font-size: 0.75rem; color: #e5ff00; margin-bottom: 6px; }
+  .amz-rp-rating span { color: #888; }
+  .amz-rp-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
+  .amz-rp-atc {
+    width: 100%;
+    background: #e5ff00;
+    color: #000;
+    border: none;
+    padding: 8px 0;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background 0.2s;
+  }
+  .amz-rp-atc:hover { background: #c8e600; }
+
+
+
+  /* =============================================
+     JUDGE.ME REVIEWS SECTION
+  ============================================= */
+  .amz-reviews-section {
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 80px 5%;
+  }
+  .amz-reviews-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .amz-reviews-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 40px;
+  }
+  .amz-reviews-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+
+  /* =============================================
+     JUDGE.ME DARK THEME — COLOR ONLY OVERRIDES
+     Never touch display/layout/padding of jdgm
+     elements to avoid breaking their internal grid
+  ============================================= */
+
+  /* Global text color — DO NOT override font-family here,
+     it would break Judge.me's icon font (stars become boxes) */
+  #judgeme_product_reviews,
+  #judgeme_product_reviews p,
+  #judgeme_product_reviews span:not(.jdgm-star),
+  #judgeme_product_reviews div,
+  #judgeme_product_reviews a {
+    color: #ccc;
+  }
+
+  /* Restore Barlow font on text elements only */
+  #judgeme_product_reviews p,
+  #judgeme_product_reviews div,
+  #judgeme_product_reviews a,
+  #judgeme_product_reviews button {
+    font-family: 'Barlow', sans-serif;
+  }
+
+  /* Stars */
+  .jdgm-star {
+    color: #e5ff00 !important;
+  }
+  .jdgm-star.jdgm--off {
+    color: #444 !important;
+  }
+  .jdgm-star:hover {
+    color: #e5ff00 !important;
+  }
+
+  /* Modal Form Dark Theme */
+  .jdgm-form-wrapper,
+  .jdgm-modal {
+    background: #111 !important;
+    color: #ccc !important;
+  }
+  .jdgm-form {
+    background: #0f0f0f !important;
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .jdgm-form__title,
+  .jdgm-modal__title {
+    color: #fff !important;
+    font-family: 'Barlow Condensed', sans-serif !important;
+  }
+  .jdgm-form input,
+  .jdgm-form textarea {
+    background: #000 !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    font-family: 'Barlow', sans-serif !important;
+  }
+  .jdgm-form input:focus,
+  .jdgm-form textarea:focus {
+    border-color: #e5ff00 !important;
+  }
+
+  /* Summary score & count text */
+  .jdgm-summary__score { color: #fff !important; }
+  .jdgm-summary__ratings-count,
+  .jdgm-summary__ratings-count a { color: #aaa !important; }
+
+  /* Histogram bars */
+  .jdgm-histogram__bar-content { background: #e5ff00 !important; }
+  .jdgm-histogram__bar-background { background: rgba(255,255,255,0.08) !important; }
+  .jdgm-histogram__item,
+  .jdgm-histogram__item-label { color: #aaa !important; }
+  .jdgm-histogram__item-count { color: #888 !important; }
+
+
+
+  /* Review cards */
+  .jdgm-rev {
+    border-color: rgba(255,255,255,0.08) !important;
+    background: #0f0f0f !important;
+    transition: border-color 0.25s;
+  }
+  .jdgm-rev:hover { border-color: rgba(229,255,0,0.3) !important; }
+  .jdgm-rev__author { color: #fff !important; font-weight: 700 !important; }
+  .jdgm-rev__title { color: #fff !important; font-weight: 700 !important; }
+  .jdgm-rev__body { color: #aaa !important; line-height: 1.7 !important; }
+  .jdgm-rev__timestamp,
+  .jdgm-rev__timestamp a { color: #666 !important; }
+  .jdgm-verified-buyer-badge { color: #e5ff00 !important; font-weight: 700 !important; }
+
+  /* Avatar circle */
+  .jdgm-rev__icon {
+    background: rgba(229,255,0,0.12) !important;
+    border-color: rgba(229,255,0,0.35) !important;
+    color: #e5ff00 !important;
+  }
+
+  /* Pagination */
+  .jdgm-paginate a { color: #aaa !important; }
+  .jdgm-paginate .jdgm--active a,
+  .jdgm-paginate a:hover {
+    color: #000 !important;
+    background: #e5ff00 !important;
+    border-color: #e5ff00 !important;
+  }
+
+  /* Write a review button — match DailyScroll ghost style */
+  .jdgm-write-rev-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 24px !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-radius: 40px !important;
+    color: #fff !important;
+    font-family: 'Barlow', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: border-color 0.2s, color 0.2s !important;
+    white-space: nowrap !important;
+  }
+  .jdgm-write-rev-link:hover {
+    border-color: #e5ff00 !important;
+    color: #e5ff00 !important;
+    background: rgba(229,255,0,0.05) !important;
+  }
+
+  /* Sort / filter toolbar */
+  .jdgm-rev-sort { display: flex; gap: 8px; align-items: center; }
+  .jdgm-rev-sort button,
+  .jdgm-rev-sort select,
+  .jdgm-rev-filters select,
+  .jdgm-rev-filters button {
+    background: #111 !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 4px !important;
+    color: #ccc !important;
+    font-family: 'Barlow', sans-serif !important;
+    padding: 6px 12px !important;
+    cursor: pointer !important;
+  }
+  .jdgm-rev-sort button:hover,
+  .jdgm-rev-filters button:hover { border-color: #e5ff00 !important; color: #e5ff00 !important; }
+
+  /* Sort dropdown popup list */
+  .jdgm-dropdown__list,
+  .jdgm-dropdown-list {
+    background: #111 !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+  }
+  .jdgm-dropdown__list li,
+  .jdgm-dropdown-list li,
+  .jdgm-dropdown__item {
+    color: #ccc !important;
+    background: transparent !important;
+  }
+  .jdgm-dropdown__item:hover,
+  .jdgm-dropdown__list li:hover {
+    background: rgba(229,255,0,0.08) !important;
+    color: #e5ff00 !important;
+  }
+
+  /* Star badge in product info area */
+  .jdgm-summary-stars-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #aaa;
+    font-size: 0.85rem;
+  }
+  .jdgm-summary-stars-rating:hover { color: #e5ff00; }
+  .jdgm-summary-stars-rating .jdgm-star { color: #e5ff00 !important; }
+
+  @media (max-width: 1024px) {
+    .amz-product-wrapper {
+      grid-template-columns: 1fr;
+      padding-top: 100px;
+    }
+    .amz-media-col {
+      position: relative;
+      top: 0;
+      flex-direction: column-reverse;
+    }
+    .amz-thumbnails {
+      flex-direction: row;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .amz-thumb {
+      width: 80px;
+      height: 80px;
+    }
+    .amz-info-col {
+      order: 2;
+    }
+    .amz-buy-box {
+      order: 3;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .amz-reviews-header-row { flex-direction: column; align-items: flex-start; }
+    .amz-related-section { padding: 40px 4%; }
+    .amz-rp-card { width: 160px; }
+  }
+</style>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('imgLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('imgLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  function changeMainImage(imgUrl, thumbElement) {
+    document.getElementById('mainProductImage').src = imgUrl;
+    var thumbs = document.querySelectorAll('.amz-thumb');
+    thumbs.forEach(function(el) { el.classList.remove('active'); });
+    thumbElement.classList.add('active');
+  }
+
+  // ===== BUNDLE & SAVE JS =====
+  var bundleBasePrice = {{ product.price }};  // price in cents
+  var bundleDiscounts = { 1: 1.0, 2: 0.85, 3: 0.75 };
+  var currentBundleTier = 1;
+
+  function formatMoney(cents) {
+    return '$' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function selectBundleTier(tier) {
+    currentBundleTier = tier;
+
+    // Update radio buttons
+    [1,2,3].forEach(function(t) {
+      var radio = document.getElementById('radio' + t);
+      if (radio) {
+        if (t === tier) radio.classList.add('selected');
+        else radio.classList.remove('selected');
+      }
+    });
+
+    // Update quantity hidden field
+    var qtySelect = document.getElementById('quantity');
+    if (qtySelect) qtySelect.value = tier;
+
+    // Update buy box price display
+    var discount = bundleDiscounts[tier];
+    var bundleTotal = Math.round(bundleBasePrice * tier * discount);
+    var buyPrice = document.querySelector('.amz-buy-price');
+    if (buyPrice) buyPrice.textContent = formatMoney(bundleTotal);
+
+    // Add discount code note to cart
+    var note = tier === 1 ? '' : ('BUNDLE' + tier + ' auto-applied');
+    var noteEl = document.getElementById('bundleDiscountNote');
+    if (noteEl) noteEl.style.display = tier > 1 ? 'block' : 'none';
+  }
+
+  // Init bundle on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    selectBundleTier(1);
+  });
+
+  var productVariants = {{ product.variants | json }};
+
+
+  function selectVariantOption(element, optionName) {
+    // 1. Get the value safely from the DOM to avoid quote escaping issues
+    var value = element.innerText.trim();
+
+    // 2. Update UI
+    var parent = element.parentElement;
+    var pills = parent.querySelectorAll('.amz-variant-pill');
+    pills.forEach(function(pill) { pill.classList.remove('selected'); });
+    element.classList.add('selected');
+    document.getElementById('selected-' + optionName).innerText = value;
+    
+    // 3. Gather all currently selected options in order (Option1, Option2, Option3)
+    var selectedPills = document.querySelectorAll('.amz-variant-pill.selected');
+    var currentOptions = Array.from(selectedPills).map(function(p) {
+      return p.innerText.trim();
+    });
+    
+    // 4. Find matching variant from Shopify JSON
+    var matchedVariant = productVariants.find(function(v) {
+       var match = true;
+       if (currentOptions[0] && v.option1 !== currentOptions[0]) match = false;
+       if (currentOptions[1] && v.option2 !== currentOptions[1]) match = false;
+       if (currentOptions[2] && v.option3 !== currentOptions[2]) match = false;
+       return match;
+    });
+    
+    // 5. Update the hidden select so Add To Cart works correctly
+    if (matchedVariant) {
+      document.getElementById('productSelect').value = matchedVariant.id;
+    }
+  }
+
+  function buyNow() {
+    var form = document.getElementById('addToCartForm');
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'return_to';
+    input.value = '/checkout';
+    form.appendChild(input);
+    form.submit();
+  }
+
+  function scrollRelated(trackId, dir) {
+    var track = document.getElementById(trackId);
+    track.scrollBy({ left: dir * 620, behavior: 'smooth' });
+  }
+
+  // ---- WISHLIST: sync heart state on load ----
+  document.addEventListener('DOMContentLoaded', function(){
+    var list = getWishlist();
+    var btn = document.getElementById('productWishlistBtn');
+    if (btn) {
+      var pid = btn.getAttribute('data-product-id');
+      if (list.some(function(p){ return p.id === pid; })) {
+        btn.classList.add('wishlisted');
+      }
+    }
+
+    // ---- RECENTLY VIEWED: track & render ----
+    addRecentlyViewed({
+      id: '{{ product.id }}',
+      title: '{{ product.title | escape }}',
+      url: '{{ product.url }}',
+      img: '{{ product.featured_image | img_url: "400x" }}',
+      price: '{{ product.price | money }}'
+    });
+    renderRecentlyViewed('rvTrack', '{{ product.id }}');
+    // ---- URGENCY LOGIC ----
+    var viewerCountEl = document.getElementById('viewerCount');
+    if (viewerCountEl) {
+      setInterval(function() {
+        var current = parseInt(viewerCountEl.innerText);
+        var change = Math.floor(Math.random() * 5) - 2; // -2 to +2
+        var newVal = current + change;
+        if (newVal < 15) newVal = 15;
+        if (newVal > 89) newVal = 89;
+        viewerCountEl.innerText = newVal;
+      }, 4000);
+    }
+    
+    var countdownEl = document.getElementById('countdownTimer');
+    if (countdownEl) {
+      // Create a unique time for this product based on its ID so it's not the same everywhere
+      // E.g., anywhere between 1 hour (3600s) and 6 hours (21600s)
+      var maxTime = 21600; 
+      var minTime = 3600;
+      var uniqueIdTime = {{ product.id | modulo: 18000 | plus: 3600 }};
+      var timeLeft = uniqueIdTime;
+      
+      setInterval(function() {
+        if (timeLeft <= 0) timeLeft = uniqueIdTime;
+        timeLeft--;
+        var h = Math.floor(timeLeft / 3600);
+        var m = Math.floor((timeLeft % 3600) / 60);
+        var s = timeLeft % 60;
+        countdownEl.innerText = (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      }, 1000);
+    }
+  });
+</script>

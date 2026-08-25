@@ -1,0 +1,68 @@
+<!-- PRIVACY POLICY PAGE -->
+<style>
+  .custom-page-wrapper {
+    padding: 150px 5% 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    min-height: 80vh;
+  }
+  .custom-page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #888;
+    line-height: 1;
+  }
+  .custom-page-content {
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  .custom-page-content p {
+    margin-bottom: 1.5rem;
+  }
+  .custom-page-content h3 {
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+</style>
+
+<div class="custom-page-wrapper">
+  <div class="section-label">— /// LEGAL</div>
+  <h1 class="custom-page-title">PRIVACY POLICY</h1>
+  <div class="custom-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <p>Last updated: {{ 'now' | date: '%B %d, %Y' }}</p>
+
+      <p>This Privacy Policy describes how {{ shop.name }} (the "Site" or "we") collects, uses, and discloses your Personal Information when you visit or make a purchase from the Site.</p>
+
+      <h3>1. Collecting Personal Information</h3>
+      <p>When you visit the Site, we collect certain information about your device, your interaction with the Site, and information necessary to process your purchases. We may also collect additional information if you contact us for customer support. In this Privacy Policy, we refer to any information that can uniquely identify an individual as "Personal Information".</p>
+
+      <h3>2. Sharing Personal Information</h3>
+      <p>We share your Personal Information with service providers to help us provide our services and fulfill our contracts with you, as described above. For example:<br>
+      - We use Shopify to power our online store. You can read more about how Shopify uses your Personal Information here: https://www.shopify.com/legal/privacy.<br>
+      - We may share your Personal Information to comply with applicable laws and regulations, to respond to a subpoena, search warrant or other lawful request for information we receive, or to otherwise protect our rights.</p>
+
+      <h3>3. Behavioral Advertising</h3>
+      <p>As described above, we use your Personal Information to provide you with targeted advertisements or marketing communications we believe may be of interest to you.</p>
+
+      <h3>4. Your Rights</h3>
+      <p>If you are a resident of the EEA or California, you have the right to access the Personal Information we hold about you, to port it to a new service, and to ask that your Personal Information be corrected, updated, or erased. If you would like to exercise these rights, please contact us through the contact information below.</p>
+
+      <h3>5. Data Retention</h3>
+      <p>When you place an order through the Site, we will retain your Personal Information for our records unless and until you ask us to erase this information.</p>
+    {% endif %}
+  </div>
+</div>

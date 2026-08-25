@@ -1,0 +1,23 @@
+<!-- MANIFESTO PAGE -->
+<style>
+  .manifesto-page { padding: 150px 5% 100px; max-width: 1000px; margin: 0 auto; text-align: center; min-height: 80vh; }
+  .manifesto-page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(60px, 12vw, 180px); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 4rem; letter-spacing: 0.05em; color: #888; }
+  .manifesto-page-content { font-size: 1.4rem; line-height: 1.8; color: var(--text-muted); text-align: left; max-width: 800px; margin: 0 auto; }
+  .manifesto-page-content p { margin-bottom: 2rem; }
+</style>
+<div class="manifesto-page">
+  <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">— /// OUR PHILOSOPHY</div>
+  <h1 class="manifesto-page-title">MANIFESTO</h1>
+  <div class="manifesto-page-content">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% else %}
+      <p style="color: var(--text-primary); font-size: 2rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; line-height: 1.2;">We are new. We are honest. We are growing.</p>
+      <p>DAILY/SCROLL was built on one simple belief — that you deserve a store that treats you with respect. No fake reviews. No misleading claims. No gimmicks.</p>
+      <p>We are at the very beginning of our journey, and we think that is something worth celebrating. Every product we list has been carefully chosen. Every guarantee we make is real. And every customer who shops with us today is a founding supporter of something we are genuinely proud to build.</p>
+      <p style="color: var(--text-primary); font-size: 1.6rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;">The world does not need another store.<br/>It needs a better one.</p>
+      <p>That is what we are here to build — one intentional drop at a time. We source products that earn their place in your daily life. Not trend-chasing. Not disposable. Objects that matter.</p>
+      <p style="color: var(--accent); font-style: italic;">Thank you for believing in us before the world does.</p>
+    {% endif %}
+  </div>
+</div>

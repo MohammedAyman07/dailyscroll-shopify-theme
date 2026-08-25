@@ -1,0 +1,40 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "DAILYSCROLL3D",
+    "theme_author": "Antigravity",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Upload a 32x32px or 64x64px image."
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "Upload your main logo."
+      }
+    ]
+  },
+  {
+    "name": "Ad Banner",
+    "settings": [
+      { "type": "image_picker", "id": "ad_image",   "label": "Ad Image 1 (Main)" },
+      { "type": "url",          "id": "ad_link",    "label": "Ad 1 Link" },
+      { "type": "image_picker", "id": "ad_image_2", "label": "Ad Image 2 (Optional)" },
+      { "type": "url",          "id": "ad_link_2",  "label": "Ad 2 Link" },
+      { "type": "image_picker", "id": "ad_image_3", "label": "Ad Image 3 (Optional)" },
+      { "type": "url",          "id": "ad_link_3",  "label": "Ad 3 Link" },
+      { "type": "checkbox",     "id": "show_ad_home", "label": "Show on Home Page", "default": true },
+      { "type": "checkbox",     "id": "show_ad_shop", "label": "Show on Shop Page",  "default": true }
+    ]
+  }
+]
