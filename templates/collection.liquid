@@ -158,9 +158,63 @@
         {% endif %}
       {% endpaginate %}
     {% else %}
-      <p style="grid-column: 1 / -1; text-align: center; color: #666; font-family: 'Barlow', sans-serif;">
-        No products found in this collection.
-      </p>
+      <!-- DUMMY PRODUCTS FOR PREVIEW / PORTFOLIO PURPOSES -->
+      <!-- If the Shopify store has no products, this fallback will render a beautiful UI for recruiters -->
+      <div class="product-card" data-id="dummy-1">
+        <div class="product-img-wrap">
+          <img src="{{ 'product_headphones.png' | asset_url }}" alt="Premium Wireless Headphones" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Noise-Cancelling Headphones</div></div>
+            <div class="product-price">$299.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-1', 'Noise-Cancelling Headphones', 299)">ADD TO BAG</button></div>
+        </div>
+      </div>
+      
+      <div class="product-card" data-id="dummy-2">
+        <div class="product-img-wrap">
+          <img src="{{ 'product_lamp.png' | asset_url }}" alt="Minimalist Desk Lamp" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Minimalist Desk Lamp</div></div>
+            <div class="product-price">$129.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-2', 'Minimalist Desk Lamp', 129)">ADD TO BAG</button></div>
+        </div>
+      </div>
+      
+      <div class="product-card" data-id="dummy-3">
+        <div class="product-img-wrap">
+          <img src="{{ 'product_watch.png' | asset_url }}" alt="Chronograph Watch" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Matte Black Chronograph</div></div>
+            <div class="product-price">$195.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-3', 'Matte Black Chronograph', 195)">ADD TO BAG</button></div>
+        </div>
+      </div>
+
+      <div class="product-card" data-id="dummy-5">
+        <div class="product-img-wrap">
+          <img src="{{ 'product_shoes.png' | asset_url }}" alt="Designer Shoes" class="product-img" />
+          <div class="product-overlay"><span>VIEW OBJECT</span></div>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">
+            <div><div class="product-name">Designer Tech Sneakers</div></div>
+            <div class="product-price">$210.00</div>
+          </div>
+          <div class="product-actions"><button type="button" class="add-to-bag" onclick="addToCart('dummy-5', 'Designer Tech Sneakers', 210)">ADD TO BAG</button></div>
+        </div>
+      </div>
     {% endif %}
   </div>
 </section>
