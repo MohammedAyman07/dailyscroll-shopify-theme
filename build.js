@@ -6,42 +6,6 @@ let rawCollection = fs.readFileSync('templates/collection.liquid', 'utf8');
 let rawManifesto = fs.readFileSync('templates/page.manifesto.liquid', 'utf8');
 let appJs = fs.readFileSync('assets/app.js', 'utf8');
 
-// --- Fix app.js (Cart Sidebar missing fix + Wishlist) ---
-appJs = appJs.replace(/window\.location\.href='\{\{ routes\.cart_url \}\}'/g, "openCart()");
-// Fix addToCart logic so it uses actual dummy images in the sidebar
-appJs = appJs.replace(
-  /function addToCart\(id, name, price\)/g, 
-  "function addToCart(id, name, price, img)"
-);
-appJs = appJs.replace(
-  /cart\.push\(\{ id, name, price, qty: 1 \}\);/g, 
-  "cart.push({ id, name, price, qty: 1, img: img || './assets/product_headphones.png' });"
-);
-appJs = appJs.replace(
-  /<div class="cart-item-name">\$\{item.name\}<\/div>/g, 
-  `<img src="\${item.img}" style="width:50px; height:50px; border-radius:4px; object-fit:cover; border:1px solid #333;">
-   <div><div class="cart-item-name">\${item.name}</div>`
-);
-appJs = appJs.replace(
-  /<div class="cart-item-price">\$\$\{item.price\} × \$\{item.qty\}<\/div>/g, 
-  `<div class="cart-item-price">$\${item.price} × \${item.qty}</div></div>`
-);
-appJs = appJs.replace(
-  /cartItemsEl\.innerHTML = '<div class="cart-empty">YOUR BAG IS EMPTY\.<\/div>';/g, 
-  `cartItemsEl.innerHTML = '<div class="cart-empty" style="padding: 2rem; color: #888;">YOUR BAG IS EMPTY.</div>';`
-);
-
-// We must append cart checkout button in JS cart
-if (!appJs.includes('checkout-btn')) {
-    appJs = appJs.replace(
-      /cartFooter\.style\.display = 'block';/g,
-      `cartFooter.style.display = 'block';
-       cartFooter.innerHTML = \`<div style="font-size:1.2rem; font-weight:bold; margin-bottom:1rem;">TOTAL: $\${totalPrice}</div><button class="add-to-bag" style="width:100%" onclick="alert('Checkout Simulated for Portfolio Demo!')">CHECKOUT</button>\`;`
-    );
-}
-fs.writeFileSync('assets/app.js', appJs);
-
-
 // --- 1. Clean theme.liquid (creates base theme layout) ---
 let theme = rawTheme;
 theme = theme.replace('{{ page_description | escape }}', 'Premium Curated Objects');

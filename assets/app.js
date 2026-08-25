@@ -84,8 +84,10 @@ function addToCart(id, name, price, img) {
   
   // Animate cart count
   const cartCount = document.getElementById('cartCount');
-  cartCount.style.transform = 'scale(1.5)';
-  setTimeout(() => cartCount.style.transform = 'scale(1)', 300);
+  if (cartCount) {
+    cartCount.style.transform = 'scale(1.5)';
+    setTimeout(() => cartCount.style.transform = 'scale(1)', 300);
+  }
 }
 
 function removeFromCart(id) {
@@ -97,44 +99,52 @@ function updateCart() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-  document.getElementById('cartCount').textContent = totalItems;
-  document.getElementById('cartTotal').textContent = `$${totalPrice.toLocaleString()}`;
+  const cartCount = document.getElementById('cartCount');
+  if (cartCount) cartCount.textContent = totalItems;
 
   const cartItemsEl = document.getElementById('cartItems');
   const cartFooter = document.getElementById('cartFooter');
 
+  if (!cartItemsEl || !cartFooter) return;
+
   if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<div class="cart-empty" style="padding: 2rem; color: #888;">YOUR BAG IS EMPTY.</div>';
+    cartItemsEl.innerHTML = '<div class="cart-empty" style="padding: 2rem; color: #888; text-align:center;">YOUR BAG IS EMPTY.</div>';
     cartFooter.style.display = 'none';
   } else {
     cartFooter.style.display = 'block';
-       cartFooter.innerHTML = `<div style="font-size:1.2rem; font-weight:bold; margin-bottom:1rem;">TOTAL: ${totalPrice}</div><button class="add-to-bag" style="width:100%" onclick="alert('Checkout Simulated for Portfolio Demo!')">CHECKOUT</button>`;
+    cartFooter.innerHTML = `<div style="font-size:1.2rem; font-weight:bold; margin-bottom:1rem;">TOTAL: $${totalPrice.toLocaleString()}</div><button class="add-to-bag" style="width:100%" onclick="alert('Checkout Simulated for Portfolio Demo!')">CHECKOUT</button>`;
     cartItemsEl.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div>
-          <img src="${item.img}" style="width:50px; height:50px; border-radius:4px; object-fit:cover; border:1px solid #333;">
-   <div><div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-price">${item.price} × ${item.qty}</div></div>
+      <div class="cart-item" style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+        <img src="${item.img}" style="width:60px; height:60px; border-radius:4px; object-fit:cover; border:1px solid #333;">
+        <div style="flex:1;">
+          <div class="cart-item-name" style="font-weight:bold; font-size:1rem;">${item.name}</div>
+          <div class="cart-item-price" style="color:#888; font-size:0.9rem;">$${item.price} × ${item.qty}</div>
         </div>
-        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
+        <button class="cart-item-remove" style="background:transparent; border:none; color:#ff3333; cursor:pointer; font-size:1.2rem;" onclick="removeFromCart('${item.id}')">✕</button>
       </div>
     `).join('');
   }
 }
 
 function openCart() {
-  document.getElementById('cartSidebar').classList.add('open');
-  document.getElementById('cartOverlay').classList.add('open');
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('cartOverlay');
+  if (sidebar) sidebar.classList.add('open');
+  if (overlay) overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  updateCart();
 }
 
 function closeCart() {
-  document.getElementById('cartSidebar').classList.remove('open');
-  document.getElementById('cartOverlay').classList.remove('open');
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('cartOverlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
 }
 
-document.getElementById('cartBtn').addEventListener('click', openCart);
+const cartBtn = document.getElementById('cartBtn');
+if (cartBtn) cartBtn.addEventListener('click', openCart);
 
 // =============================================
 // TOAST NOTIFICATION
