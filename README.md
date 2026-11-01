@@ -202,4 +202,4 @@ While building this project I learned more about:
 
 ## License
 
-MIT License
+This project is proprietary and all rights are reserved. The source is publicly available for portfolio review only. See the [AYMAN Proprietary Portfolio Licence](LICENSE) for permitted use and restrictions.
